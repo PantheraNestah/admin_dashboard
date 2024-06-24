@@ -1,0 +1,66 @@
+@import "../../assets/style/vars.scss";
+
+a {
+    text-decoration: none;
+    color: $cust-dark1;
+}
+.App {
+    background-color: $cust-color2;
+    height: 100vh;
+}
+
+.header {
+    height: 4rem;
+    padding-bottom: 1rem;
+    color: $cust-gray7;
+    .side_drop {
+        margin-left: 2rem;
+        gap: 2rem;
+        h2 {
+            color: $cust-gray7;
+            font-size: 23px;
+        }
+    }
+    nav {
+        margin-left: calc(5%);
+        padding: 0.5rem 1rem;
+        box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(0,0,0,0.2);
+        h2 {
+            font-size: 23px;
+        }
+    }
+    .prof_links {
+        gap: 10px;
+        i {
+            color: $cust-dark1;
+            font-size: 20px;
+        }
+    }
+    .user_profile {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    #side_menu {
+        position: fixed;
+        top: 5rem;
+        left: 2rem;
+        bottom: 3rem;
+        width: 15rem;
+        background-color: $cust-gray1;
+        padding: 1rem 1.5rem;
+        #project_ops a, #client_ops a {
+            /* display: block; */
+        }
+        .menu_item {
+            margin: 1rem 0;
+            a {
+                text-decoration: none;
+            }
+        }
+        .btsp-icons, .ggl-icons {
+            font-size: 20px;
+            color: $cust-dark1;
+        }
+    }
+}
