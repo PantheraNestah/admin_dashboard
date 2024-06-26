@@ -12,3 +12,9 @@ $cust-green4: $green-400;
 
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/bootstrap.scss";
+
+.App_page, .App {
+    overflow-y: auto;
+    background-color: $cust-color2;
+    height: 100vh;
+}

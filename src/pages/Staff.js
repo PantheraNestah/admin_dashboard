@@ -1,18 +1,18 @@
 import React from "react";
 import Header from "../components/header/Header";
-import Legend from "../components/legend/Legend";
-import Tables_container from "../components/data_tables/Tables_container";
 import Footer from "../components/footer/Footer";
+import Staff_legend from "../components/profile_legend/Staff_legend";
+import Tables_container from "../components/data_tables/Tables_container";
 
-const Home = () => {
+const Staff = () => {
     return (
         <div className="App_page w-100">
             <Header />
-            <Legend />
+            <Staff_legend />
             <Tables_container />
             <Footer />
         </div>
     );
 };
 
-export default Home;
+export default Staff;

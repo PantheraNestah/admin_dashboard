@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,36 +24,36 @@ const Header = () => {
                     </a>
                 </div>
             </nav>
-            <div id="side_menu" className="collapse">
+            <div id="side_menu" className="collapse show">
                 <div className="menu_item">
                     <span>
                         <a href="#project_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
                     </span>
-                    <div id="project_ops" className="">
-                        <a href="#">Add Project</a>
-                        <a href="#">View</a>
+                    <div id="project_ops" className="mini_menu collapse">
+                        <a href="#" className="d-block">Add Project</a>
+                        <a href="#" className="d-block">View</a>
                     </div>
                 </div>
                 <div className="menu_item">
                     <span>
                         <a href="#client_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops"> <i class="bi bi-people-fill btsp-icons me-2"></i> Clients</a>
                     </span>
-                    <div id="client_ops" className="">
-                        <a href="#">Add Client</a>
-                        <a href="#">View</a>
+                    <div id="client_ops" className="mini_menu collapse">
+                        <a href="#" className="d-block">Add Client</a>
+                        <a href="#" className="d-block">View</a>
                     </div>
                 </div>
                 <div className="menu_item">
-                    <a href="#" className="d-flex align-items-center"><i class="bi bi-shield-fill-exclamation btsp-icons me-2"></i> Staff</a>
+                    <NavLink to={"/staff"} className="d-flex align-items-center"><i class="bi bi-shield-fill-exclamation btsp-icons me-2"></i> Staff</NavLink>
                     <div></div>
                 </div>
                 <div className="menu_item">
                     <a href="#recent_activities" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#recent_activities"><span class="material-symbols-outlined ggl-icons me-2">work_history</span> Recent Activities</a>
-                    <div id="recent_activities"></div>
+                    <div id="recent_activities" className="activities_log collapse"></div>
                 </div>
                 <div className="menu_item">
                     <a href="#support_sect" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#support_sect"><span class="material-symbols-outlined ggl-icons me-2">support_agent</span> Contact Support</a>
-                    <div id="support_sect"></div>
+                    <div id="support_sect" className="contact_sect collapse"></div>
                 </div>
             </div>
         </header>

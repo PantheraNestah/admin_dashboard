@@ -4,15 +4,14 @@ a {
     text-decoration: none;
     color: $cust-dark1;
 }
-.App {
-    background-color: $cust-color2;
-    height: 100vh;
-}
 
 .header {
     height: 4rem;
     padding-bottom: 1rem;
     color: $cust-gray7;
+    position: fixed;
+    top: 0;
+    z-index: 500;
     .side_drop {
         margin-left: 2rem;
         gap: 2rem;
@@ -25,6 +24,7 @@ a {
         margin-left: calc(5%);
         padding: 0.5rem 1rem;
         box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(0,0,0,0.2);
+        background-color: $cust-color2;
         h2 {
             font-size: 23px;
         }
@@ -45,7 +45,7 @@ a {
         position: fixed;
         top: 5rem;
         left: 2rem;
-        bottom: 3rem;
+        bottom: 5rem;
         width: 15rem;
         background-color: $cust-gray1;
         padding: 1rem 1.5rem;
@@ -57,6 +57,14 @@ a {
             a {
                 text-decoration: none;
             }
+        }
+        .mini_menu {
+            padding-left: 20px;
+        }
+        .contact_sect, .activities_log {
+            height: 12rem;
+            margin-left: 1rem;
+            background-color: $cust-color2;
         }
         .btsp-icons, .ggl-icons {
             font-size: 20px;

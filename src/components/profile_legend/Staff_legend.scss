@@ -1,0 +1,26 @@
+@import "../../assets/style/vars.scss";
+
+.staff_legend {
+    padding-left: 22rem;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    .info_container {
+        height: 25rem;
+        margin: 0;
+        background-color: $cust-gray1;
+        position: relative;
+        .dark_cover {
+            background-color: $green-900;
+            height: 10rem;
+        }
+        .profile_pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: $gray-700;
+            position: absolute;
+            top: calc(10rem - 90px);
+            left: 4rem;
+        }
+    }
+}

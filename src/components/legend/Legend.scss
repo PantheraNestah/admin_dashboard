@@ -1,0 +1,25 @@
+@import "../../assets/style/vars.scss";
+
+.legend_section{
+    padding: 2rem 0;
+    padding-left: 22rem;
+    margin-top: 5rem;
+    div.stats {
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+    .stats_highlight {
+        height: 150px;
+        width: 360px;
+        background-color: $cust-gray1;
+        border-radius: 6px;
+    }
+    .highlight_slider {
+        gap: 25px;
+    }
+    .slider {
+        height: 220px;
+        width: 360px;
+        background-color: $cust-gray1;
+    }
+}
