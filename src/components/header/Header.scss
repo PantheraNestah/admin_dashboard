@@ -67,5 +67,11 @@ a {
             font-size: 20px;
             color: $cust-dark1;
         }
+        #client_ops, #project_ops {
+            a {
+                font-size: 14px;
+                color: $cust-dark1;
+            }
+        }
     }
 }

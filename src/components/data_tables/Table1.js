@@ -4,7 +4,7 @@ import "./Tables_container.scss";
 const Table1 = (props) => {
 
     return (
-        <div className="data_table col-lg-11 mx-lg-auto">
+        <div id={`${props.for_name}_section`} className="data_table col-lg-11 mx-lg-auto">
             <div className="table_title">
                 <h2 className="mb-2">{props.for_name} Details</h2>
                 { props.for_name === "Clients" ? (
@@ -27,27 +27,27 @@ const Table1 = (props) => {
             </div>
             { props.for_name === "Projects" ? (
                 <div className="table_tabs col-lg-11 mx-lg-auto d-flex justify-content-end">
-                <ul className="d-flex col-lg-8 d-flex justify-content-end">
-                    <li>
-                        <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
-                            <span><i class="bi bi-plus-circle-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
-                            <span class="ms-1" style={{fontSize: "14.5px"}}>Project</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
-                            <span><i class="bi bi-pencil-square btsp-icons" style={{fontSize: "20px"}}></i></span>
-                            <span class="ms-1" style={{fontSize: "14.5px"}}>Edit</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                    <ul className="d-flex col-lg-8 d-flex justify-content-end">
+                        <li>
+                            <a href="#prodModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#prodModal">
+                                <span><i class="bi bi-plus-circle-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
+                                <span class="ms-1" style={{fontSize: "14.5px"}}>Project</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#prodModalEdit" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#prodModalEdit">
+                                <span><i class="bi bi-pencil-square btsp-icons" style={{fontSize: "20px"}}></i></span>
+                                <span class="ms-1" style={{fontSize: "14.5px"}}>Edit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             ) : null}
             { props.for_name === "Staff" ? (
                 <div className="table_tabs col-lg-11 mx-lg-auto d-flex justify-content-end">
                     <ul className="d-flex col-lg-5 d-flex justify-content-end">
                         <li>
-                            <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
+                            <a href="#staffModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#staffModal">
                                 <span><i class="bi bi-plus-circle-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
                                 <span class="ms-1" style={{fontSize: "14.5px"}}>Staff</span>
                             </a>
@@ -59,19 +59,19 @@ const Table1 = (props) => {
                 <div className="table_tabs col-lg-11 mx-lg-auto d-flex justify-content-center">
                     <ul className="d-flex col-lg-11 d-flex justify-content-between">
                         <li>
-                            <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
+                            <a href="#clientModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#clientModal">
                                 <span><i class="bi bi-person-fill-add btsp-icons" style={{fontSize: "20px"}}></i></span>
                                 <span class="ms-1" style={{fontSize: "14.5px"}}>New client</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
+                            <a href="#emailModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#emailModal">
                                 <span><i class="bi bi-envelope-arrow-up-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
                                 <span class="ms-1" style={{fontSize: "14.5px"}}>Bulk mail</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" className="btn btn-outline-secondary d-flex justify-content-center align-items-center">
+                            <a href="#smsModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#smsModal">
                                 <span><i class="bi bi-chat-left-dots-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
                                 <span class="ms-1" style={{fontSize: "14.5px"}}>Bulk SMS</span>
                             </a>

@@ -30,8 +30,8 @@ const Header = () => {
                         <a href="#project_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
                     </span>
                     <div id="project_ops" className="mini_menu collapse">
-                        <a href="#" className="d-block">Add Project</a>
-                        <a href="#" className="d-block">View</a>
+                        <a href="#prodModal" className="d-block" data-bs-toggle="modal" data-bs-target="#prodModal">Add Project</a>
+                        <a href="#Projects_section" className="d-block">View</a>
                     </div>
                 </div>
                 <div className="menu_item">
@@ -39,8 +39,8 @@ const Header = () => {
                         <a href="#client_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops"> <i class="bi bi-people-fill btsp-icons me-2"></i> Clients</a>
                     </span>
                     <div id="client_ops" className="mini_menu collapse">
-                        <a href="#" className="d-block">Add Client</a>
-                        <a href="#" className="d-block">View</a>
+                        <a href="#clientModal" className="d-block" data-bs-toggle="modal" data-bs-target="#clientModal">Add Client</a>
+                        <a href="#Clients_section" className="d-block">View</a>
                     </div>
                 </div>
                 <div className="menu_item">

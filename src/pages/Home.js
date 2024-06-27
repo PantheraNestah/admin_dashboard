@@ -5,6 +5,11 @@ import Tables_container from "../components/data_tables/Tables_container";
 import Footer from "../components/footer/Footer";
 import Projects_table from "../components/data_tables/Projects_table";
 import Clients_table from "../components/data_tables/Clients_table";
+import Prod_modal from "../components/modals/Prod_modal";
+import Prod_edit_modal from "../components/modals/Prod_edit_modal";
+import Client_modal from "../components/modals/Client_modal";
+import Email_modal from "../components/modals/Email_modal";
+import Sms_modal from "../components/modals/Sms_modal";
 
 const Home = () => {
     return (
@@ -13,6 +18,11 @@ const Home = () => {
             <Legend />
             <Tables_container table={Projects_table} for_name={"Projects"} />
             <Tables_container table={Clients_table} for_name={"Clients"} />
+            <Prod_modal />
+            <Prod_edit_modal />
+            <Client_modal />
+            <Email_modal />
+            <Sms_modal />
             <Footer />
         </div>
     );
