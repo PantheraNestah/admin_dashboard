@@ -1,7 +1,7 @@
 import React from "react";
 import "./Tables_container.scss";
 
-const Table1 = () => {
+const Table1 = ({ Data_table }) => {
 
     return (
         <div className="data_table col-lg-11 mx-lg-auto">
@@ -22,10 +22,11 @@ const Table1 = () => {
                     </li>
                 </ul>
             </div>
-            <div className="col-lg-11 mx-lg-auto">
+            <div className="col-lg-11 mx-lg-auto my-2">
                 <div className="search">
                     <input type="text" placeholder="Type to search..." className="" />
                 </div>
+                <Data_table />
             </div>
         </div>
     );

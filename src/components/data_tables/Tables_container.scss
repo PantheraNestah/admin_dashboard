@@ -4,17 +4,18 @@
     padding-left: 22rem;
     .table_container {
         padding: 2rem 0;
-        height: 35rem;
+        min-height: 35rem;
         background-color: $cust-gray1;
     }
 }
 .data_table {
     background-color: $cust-color2;
-    height: 20rem;
-    padding-top: 2rem;
+    min-height: 20rem;
+    padding: 2rem 0;
     .table_title {
         width: 120px;
         margin-left: 2rem;
+        margin-bottom: 1.5rem;
         h2 {
             color: $cust-dark1;
             font-size: 24px;
@@ -37,7 +38,7 @@
     }
     .search {
         width: 200px;
-        margin-top: 2rem;
+        margin: 2rem 0;
         input {
             width: 180px;
             height: 45px;
@@ -47,5 +48,16 @@
             border: none;
             outline: none;
         }
+    }
+    .MuiToolbar-root {
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .MuiDataGrid-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }

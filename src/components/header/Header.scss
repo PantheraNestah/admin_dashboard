@@ -22,7 +22,7 @@ a {
     }
     nav {
         margin-left: calc(5%);
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 2rem;
         box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(0,0,0,0.2);
         background-color: $cust-color2;
         h2 {
@@ -49,9 +49,6 @@ a {
         width: 15rem;
         background-color: $cust-gray1;
         padding: 1rem 1.5rem;
-        #project_ops a, #client_ops a {
-            /* display: block; */
-        }
         .menu_item {
             margin: 1rem 0;
             a {
