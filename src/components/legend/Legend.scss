@@ -30,7 +30,7 @@
         border-radius: 4px;
         background-color: rgba(0,0,0,0.2);
         position: absolute;
-        z-index: 1000;
+        z-index: 200;
         top: 0.5rem;
         left: 0.8rem;
         font-size: 14.6px;
@@ -39,6 +39,5 @@
     .carousel-item img {
         width: 360px;
         height: 220px;
-        border-radius: 6px;
     }
 }
