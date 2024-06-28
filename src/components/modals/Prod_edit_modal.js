@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./modal.scss";
 
 const Prod_edit_modal = (props) => {
+    const [prodSearch, setProdSearch] = useState("");
+    const [prodFound, setProdFound] = useState(false);
+
+    const handle_prod_search = (e) => {
+        setProdFound(true);
+    };
+
     return (
         <section id="prodModalEdit" class="modal fade prodModalEdit">
             <div class="modal-dialog modal-dialog-centered">
@@ -16,8 +23,8 @@ const Prod_edit_modal = (props) => {
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodIdEdit">Search Id</label>
                                     <span class="d-flex justify-content-between searchField">
-                                        <input class="text-center" type="text" name="prodId" id="prodIdEdit" placeholder="search by Id" />
-                                        <span id="searchProdId" class="text-center">
+                                        <input class="text-center" type="text" name="prodId" id="prodIdEdit" placeholder="search by Id" onChange={setProdSearch} />
+                                        <span id="searchProdId" class="text-center" onClick={handle_prod_search}>
                                             <i class="bi bi-search"></i>
                                         </span>
                                     </span>

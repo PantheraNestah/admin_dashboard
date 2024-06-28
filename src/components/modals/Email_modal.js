@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./modal.scss";
 
 const Email_modal = () => {
+    const [prodSearch, setProdSearch] = useState("");
+    const [prodFound, setProdFound] = useState(false);
+
+    const handle_prod_search = (e) => {
+        setProdFound(true);
+    };
+
     return (
         <section id="emailModal" class="modal fade messageModal">
             <div class="modal-dialog modal-dialog-centered">
@@ -15,7 +22,19 @@ const Email_modal = () => {
                             <form id="emailForm" class="d-flex flex-column justify-content-between">
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodId">Product Id</label>
-                                    <input class="text-center" type="text" name="prodId" id="prodId" placeholder="" />
+                                    <span class="d-flex justify-content-between searchField">
+                                        <input class="text-center" type="text" name="prodId" id="prodIdEdit" placeholder="search by Id" onChange={setProdSearch} />
+                                        <span id="searchProdId" class="text-center"  onClick={handle_prod_search}>
+                                            <i class="bi bi-search"></i>
+                                        </span>
+                                    </span>
+                                    {/* <input class="text-center" type="text" name="prodId" id="prodId" placeholder="" /> */}
+                                    {prodFound &&
+                                        <span class="confirm-product d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-check-circle-fill me-2"></i>
+                                            <span>Product found</span>
+                                        </span>
+                                    }
                                 </span>
                                 <span class="message-field d-flex flex-column">
                                     <label for="message">Compose Message</label>

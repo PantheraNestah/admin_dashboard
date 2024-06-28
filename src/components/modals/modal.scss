@@ -8,6 +8,26 @@
         font-size: 20px;
     }
 }
+.clientModal, .prodModalEdit, .messageModal {
+    .searchField {
+        width: 180px;
+        input {
+            width: 130px;
+        }
+        span {
+            width: 30px; 
+            height: 30px; 
+            border-radius: 3px;
+            background-color: $cust-gray7;
+            cursor: pointer;
+            i {
+                font-size: 14px;
+                font-weight: bold;
+                color: $cust-gray1;
+            }
+        }
+    }
+}
 .modal-form {
     height: 270px;
     label {
@@ -69,24 +89,6 @@
     height: 370px;
     form {
         height: 280px;
-    }
-    .searchField {
-        width: 180px;
-        input {
-            width: 130px;
-        }
-        span {
-            width: 30px; 
-            height: 30px; 
-            border-radius: 3px;
-            background-color: $cust-gray7;
-            cursor: pointer;
-            i {
-                font-size: 14px;
-                font-weight: bold;
-                color: $cust-gray1;
-            }
-        }
     }
 }
 .prodModal .modal-form {

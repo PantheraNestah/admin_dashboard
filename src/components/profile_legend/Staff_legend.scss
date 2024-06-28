@@ -23,4 +23,32 @@
             left: 4rem;
         }
     }
+    .prof-body {
+        height: 16rem;
+        .info-container {
+            margin-top: 5.3rem;
+            :nth-child(2) {
+                article {
+                    margin: 5px 0px;
+                    i {
+                        font-size: 28px;
+                    }
+                }
+            }
+            a {
+                text-decoration: none;
+            }
+            .quick-contact {
+                margin-top: 0.8rem;
+                padding-left: 0.6rem;
+                padding-right: 0.6rem;
+                .btn-cprimary {
+                    color: $orange-100;
+                }
+            }
+            a.btn {
+                font-size: 13px;
+            }
+        }
+    }
 }

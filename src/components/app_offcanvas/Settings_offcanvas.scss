@@ -1,0 +1,65 @@
+@import "../../assets/style/vars.scss";
+
+.offcanvas {
+    background-color: $cust-gray1;
+    .div-current-profile {
+        background-color: $green-900;
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        margin-right: 2rem;
+        img {
+            height: 90px;
+            width: 90px;
+            border-radius: 50%; 
+        }
+    }
+    hr {
+        width: 2px;
+        color: $cust-color2;
+        border: 3px solid $cust-color2;
+    }
+    .article-staff-details {
+        background-color: $cust-color2;
+        margin-top: 1rem;
+        height: 32rem;
+        position: relative;
+    }
+    .staff-details {
+        padding-top: 3rem;
+        padding-left: 2rem;
+        height: 17rem;
+        form {
+            height: 12rem;
+            span {
+                width: 280px;
+            }
+        }
+        label {
+            width: 70px;
+        }
+        .txt-input {
+            width: 170px;
+            text-align: center;
+        }
+    }
+    .div-profile-upload {
+        height: 13rem;
+        padding-left: 2rem;
+        form {
+            height: 12rem;
+        }
+        .upload-wrapper {
+            background-color: $cust-gray1;
+            height: 7rem;
+            #img-upload {
+                width: 200px;
+                font-size: 14px;
+                color: $green-300;
+            }
+        }
+    }
+    .submit-btn {
+        color: $orange-100;
+    }
+}
