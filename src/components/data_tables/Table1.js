@@ -4,7 +4,7 @@ import "./Tables_container.scss";
 const Table1 = (props) => {
 
     return (
-        <div id={`${props.for_name}_section`} className="data_table col-lg-11 mx-lg-auto">
+        <div id={`${props.for_name}_section`} className="data_table col-12 col-lg-11 mx-lg-auto">
             <div className="table_title">
                 <h2 className="mb-2">{props.for_name} Details</h2>
                 { props.for_name === "Clients" ? (
@@ -57,31 +57,31 @@ const Table1 = (props) => {
             ): null}
             { props.for_name === "Clients" ? (
                 <div className="table_tabs col-lg-11 mx-lg-auto d-flex justify-content-center">
-                    <ul className="d-flex col-lg-11 d-flex justify-content-between">
+                    <ul className="d-flex col-12 col-lg-11 d-flex justify-content-between">
                         <li>
                             <a href="#clientModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#clientModal">
                                 <span><i class="bi bi-person-fill-add btsp-icons" style={{fontSize: "20px"}}></i></span>
-                                <span class="ms-1" style={{fontSize: "14.5px"}}>New client</span>
+                                <span class="ms-1" style={{fontSize: "14.5px"}}>Client</span>
                             </a>
                         </li>
                         <li>
                             <a href="#emailModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#emailModal">
                                 <span><i class="bi bi-envelope-arrow-up-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
-                                <span class="ms-1" style={{fontSize: "14.5px"}}>Bulk mail</span>
+                                <span class="ms-1" style={{fontSize: "14.5px"}}>Mail</span>
                             </a>
                         </li>
                         <li>
                             <a href="#smsModal" className="btn btn-outline-secondary d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#smsModal">
                                 <span><i class="bi bi-chat-left-dots-fill btsp-icons" style={{fontSize: "20px"}}></i></span>
-                                <span class="ms-1" style={{fontSize: "14.5px"}}>Bulk SMS</span>
+                                <span class="ms-1" style={{fontSize: "14.5px"}}>SMS</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             ) : null}
-            <div className="col-lg-11 mx-lg-auto my-2">
+            <div className="col-12 col-lg-11 mx-lg-auto my-2">
                 <div className="search">
-                    <input type="text" placeholder="Type to search..." className="" />
+                    <input type="text" placeholder="Type to search..." className="text-center" />
                 </div>
                 <props.table />
             </div>

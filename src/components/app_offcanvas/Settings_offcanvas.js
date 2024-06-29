@@ -2,7 +2,31 @@ import React, { useState, useEffect } from "react";
 import "./Settings_offcanvas.scss";
 
 const Settings_offcanvas = () => {
-    const [submitDisabled, setsubmitDisabled] = useState(false);
+    const [submitDisabled, setsubmitDisabled] = useState(true);
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [lnHandle, setLnHandle] = useState("");
+    const [xHandle, setXHandle] = useState("");
+
+    const toggle_edit = () => {
+        (submitDisabled) ? setsubmitDisabled(false) : setsubmitDisabled(true);
+    };
+    const details_submission = (e) => {
+        setsubmitDisabled(true);
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("phone", phone);
+        formData.append("lnHandle", lnHandle);
+        formData.append("xHandle", xHandle);
+        const staffDetails = {
+            email: email,
+            phone: phone,
+            lnHandle: lnHandle,
+            xHandle: xHandle
+        };
+        console.log(formData);
+    };
 
     return (
         <div className="offcanvas offcanvas-end" id="settingsOffcanvas" aria-labelledby="settingsLabel">
@@ -18,26 +42,26 @@ const Settings_offcanvas = () => {
                     </div>
                 </article>
                 <article className="article-staff-details">
-                    <span id="toggle-edit" style={{position: "absolute", top: "0.8rem", right: "1.1rem", cursor: "pointer"}}>
+                    <span id="toggle-edit" style={{position: "absolute", top: "0.8rem", right: "1.1rem", cursor: "pointer"}} onClick={toggle_edit}>
                         <i className="bi bi-pencil-square" style={{fontSize: "24px",fontWeight: "800"}}></i>
                     </span>
                     <div className="staff-details">
-                        <form id="edit-staffForm" action="" className="d-flex flex-column justify-content-between col-11">
+                        <form id="edit-staffForm" className="d-flex flex-column justify-content-between col-11" onSubmit={details_submission}>
                             <span className="d-flex justify-content-between">
                                 <label for="">Email</label>
-                                <input id="staffEmail" className="txt-input" name="email" type="email" placeholder="name@example.com" />
+                                <input id="staffEmail" className="txt-input" name="email" type="email" placeholder="name@example.com" onChange = {(e) => {setEmail(e.target.value)} } />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="">Phone</label>
-                                <input id="staffPhone" className="txt-input" name="phone" type="text" placeholder="+254798765432" />
+                                <input id="staffPhone" className="txt-input" name="phone" type="text" placeholder="+254798765432" onChange={(e) => {setPhone(e.target.value)}} />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="lnHandle">LinkedIn</label>
-                                <input className="txt-input" type="text" name="lnHandle" id="lnHandle" placeholder="@LinkedIn" />
+                                <input className="txt-input" type="text" name="lnHandle" id="lnHandle" placeholder="@LinkedIn" onChange={(e) => {setLnHandle(e.target.value)}} />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="xHandle">X Handle</label>
-                                <input className="txt-input" type="text" name="xhandle" id="xHandle" placeholder="@xHandle" />
+                                <input className="txt-input" type="text" name="xhandle" id="xHandle" placeholder="@xHandle" onChange={(e) => {setXHandle(e.target.value)}} />
                             </span>
                             <div>
                                 <input type="submit" value="Save" className="submit-edit submit-btn btn btn-primary" style={{width: "60px"}} disabled={submitDisabled} />

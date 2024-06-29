@@ -2,7 +2,7 @@
 
 .legend_section{
     padding: 2rem 0;
-    padding-left: 22rem;
+    padding-left: 21.2rem;
     margin-top: 5rem;
     div.stats {
         gap: 25px;
@@ -15,6 +15,9 @@
         border-radius: 6px;
     }
     .highlight_slider {
+        gap: 25px;
+    }
+    .slider_container {
         gap: 25px;
     }
     .slider {
@@ -39,5 +42,35 @@
     .carousel-item img {
         width: 360px;
         height: 220px;
+    }
+}
+@media (max-width: 575.9px) {
+    .legend_section {
+        padding-left: 0;
+        margin-top: 3rem;
+        .stats {
+            margin: 0 auto;
+        }
+        .highlight_slider {
+            flex-wrap: wrap;
+        }
+        .slider_container {
+            gap: 25px;
+        }
+        .highlight_slider {
+            margin: 0 auto;
+        }
+        .stats_highlight {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .slider {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
+        .carousel-item img {
+            width: 100%;
+        }
     }
 }
