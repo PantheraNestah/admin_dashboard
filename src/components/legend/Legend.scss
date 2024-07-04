@@ -4,15 +4,28 @@
     padding: 2rem 0;
     padding-left: 21.2rem;
     margin-top: 5rem;
-    div.stats {
-        gap: 25px;
-        margin-bottom: 25px;
+    .legend_stats {
+        padding: 1rem 0;
+    }
+    .div_stat {
+        height: 200px;
+        background-color: $cust-gray1;
     }
     .stats_highlight {
-        height: 150px;
+        height: 170px;
         width: 360px;
         background-color: $cust-gray1;
         border-radius: 6px;
+        article {
+            h4 {
+                color: $cust-dark1;
+                font-size: 50px;
+                margin: 0;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
     }
     .highlight_slider {
         gap: 25px;
@@ -42,6 +55,28 @@
     .carousel-item img {
         width: 360px;
         height: 220px;
+    }
+    .notifications_stats {
+        margin-top: 4rem;
+        height: 280px;
+        padding: 10px 1rem;
+        background-color: $cust-gray1;
+        .title_div {
+            p, h4 {
+                color: $cust-dark1;
+                margin: 0;
+            }
+            span, i {
+                font-size: 12px;
+            }
+            .badge {
+                background-color: rgba($green-900, 0.5);
+                color: white;
+                font-size: 12px;
+                border-radius: 2px;
+                margin-top: 2px;
+            }
+        }
     }
 }
 @media (max-width: 575.9px) {

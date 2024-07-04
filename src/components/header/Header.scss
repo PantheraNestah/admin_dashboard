@@ -94,7 +94,7 @@ a {
         }
         #menu_drop {
             position: fixed;
-            top: 4rem;
+            top: 3rem;
             right: 2rem;
             left: 2rem;
             height: 8rem;
@@ -107,30 +107,35 @@ a {
                 text-decoration: none;
                 position: relative;
             }
-            a::before {
-                content: "";
-                width: 4px;
-                height: 4px;
-                border-radius: 50%;
-                background-color: $cust-dark1;
-                position: absolute;
-                top: 50%;
-                left: -8px;
-            }
             ul {
                 list-style-type: none;
                 gap: 5px;
                 padding-left: 1rem;
                 margin: 0;
+                a::before {
+                    content: "";
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: $cust-dark1;
+                    position: absolute;
+                    top: 50%;
+                    left: -8px;
+                }
             }
             .links_side, .profile_side {
                 height: 6rem;
             }
-            .profile_div {
+            .profile_link {
                 width: 90px;
                 height: 90px;
                 border-radius: 50%;
                 background-color: $cust-color2;
+                img {
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 50%;
+                }
             }
         }
     }

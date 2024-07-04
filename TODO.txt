@@ -1,0 +1,18 @@
+	Graphs
+---------------------------
+weekly SMS sent
+weekly Emails sent
+
+{weekly notificatons}
+
+properties acquired/completed in the past 6 months
+clients acquired "    "
+
+Properties Cartegory:-
+	Completed
+	Under construction
+	Pre-construction
+
+	Residential
+	Land
+	Commercial

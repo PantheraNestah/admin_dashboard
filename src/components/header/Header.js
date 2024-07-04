@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
+import profile_holder from "../../assets/img/profile_placeholder.jpg";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -82,20 +83,20 @@ const Sm_nav = () => {
                 <div className="links_side col-5">
                     <ul className="d-flex flex-column align-items-start">
                         <li>
-                            <a href="">Projects</a>
+                            <a href="/#Projects_section">Projects</a>
                         </li>
                         <li>
-                            <a href="">Clients</a>
+                            <a href="#Clients_section">Clients</a>
                         </li>
                         <li>
-                            <a href="">Staff</a>
+                            <NavLink to="/staff">Staff</NavLink>
                         </li>
                     </ul>
                 </div>
                 <article className="profile_side col-6">
-                    <div className="profile_div mx-auto">
-                        <img src="" alt="" />
-                    </div>
+                    <NavLink className="profile_link mx-auto" to={"/mobile_acc"}>
+                        <img src={profile_holder} alt="" />
+                    </NavLink>
                 </article>
             </div>
         </div>
