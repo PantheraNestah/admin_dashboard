@@ -16,13 +16,13 @@ const Header = () => {
     return (
         <header className="header col-12 d-flex">
             <div className="col-lg-12 d-none d-md-flex" style={{height:"100%"}}>
-                <div className="side_drop col-lg-2 d-flex align-items-center">
+                {/* <div className="side_drop col-lg-2 d-flex align-items-center">
                     <a href="#side_menu" data-bs-toggle="collapse" aria-expanded="true" aria-controls="side_menu">
                         <span  class="material-symbols-outlined">menu</span>
                     </a>
                     <h2>Dashboard</h2>
-                </div>
-                <nav className="col-lg-7 d-flex justify-content-between">
+                </div> */}
+                {/* <nav className="col-lg-7 d-flex justify-content-between">
                     <h2>Meladen Properties ltd</h2>
                     <div className="prof_links d-flex align-items-center justify-content-center border">
                         <span><i class="bi bi-box-arrow-right"></i></span>
@@ -31,8 +31,18 @@ const Header = () => {
                             <i class="bi bi-person-circle"></i>
                         </a>
                     </div>
-                </nav>
-                <div id="side_menu" className="collapse show">
+                </nav> */}
+                <div className="col-10 d-flex align-items-end border" style={{ gap: "8rem"}}>
+                    <h2>Meladen Properties ltd</h2>
+                    <div className="prof_links d-flex align-items-center justify-content-center border">
+                        <span><i class="bi bi-box-arrow-right"></i></span>
+                        <span><i class="bi bi-bell-fill"></i></span>
+                        <a href="#settingsOffcanvas" className="user_profile d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#settingsOffcanvas" aria-controls="#settingsOffcanvas">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="side_menu" className="">
                     <div className="menu_item">
                         <span>
                             <a href="#project_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>

@@ -2,14 +2,44 @@
 
 .legend_section{
     padding: 2rem 0;
-    padding-left: 21.2rem;
-    margin-top: 5rem;
+    padding-top: 0;
+    margin-left: 22rem;
     .legend_stats {
         padding: 1rem 0;
     }
     .div_stat {
         height: 200px;
         background-color: $cust-gray1;
+        .num_stat {
+            position: relative;
+            padding-top: 2rem;
+            gap: 1.7rem;
+            .stat_tag {
+                font-size: 14px;
+                position: absolute;
+                top: 1rem;
+                left: 1.5rem;
+                h3 {
+                    font-size: 16px;
+                    margin: 0;
+                }
+            }
+        }
+        ul.category {
+            font-size: 12px;
+            margin: 0;
+            gap: 2rem;
+        }
+        article {
+            h4 {
+                color: $cust-dark1;
+                font-size: 50px;
+                margin: 0;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
     }
     .stats_highlight {
         height: 170px;
@@ -27,15 +57,9 @@
             }
         }
     }
-    .highlight_slider {
-        gap: 25px;
-    }
-    .slider_container {
-        gap: 25px;
-    }
     .slider {
-        height: 220px;
-        width: 360px;
+        height: 240px;
+        width: 380px;
         background-color: $cust-gray1;
         position: relative;
     }
@@ -53,12 +77,12 @@
         color: $cust-gray1;
     }
     .carousel-item img {
-        width: 360px;
-        height: 220px;
+        width: 380px;
+        height: 240px;
     }
     .notifications_stats {
         margin-top: 4rem;
-        height: 280px;
+        height: 300px;
         padding: 10px 1rem;
         background-color: $cust-gray1;
         .title_div {

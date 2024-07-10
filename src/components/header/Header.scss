@@ -8,8 +8,8 @@ a {
 .header {
     height: 4rem;
     padding-bottom: 1rem;
-    color: $cust-gray7;
-    position: fixed;
+    color: $cust-gray7;/* 
+    position: fixed; */
     top: 0;
     z-index: 500;
     .side_drop {
