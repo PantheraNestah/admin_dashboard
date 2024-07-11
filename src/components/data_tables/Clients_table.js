@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
+import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
     {field: 'name', headerName: 'Name', width: 150},
     {field: 'email', headerName: 'Email', width: 150},
-    {field: 'phone', headerName: 'Phone', width: 150},
+    {field: 'phone', headerName: 'Phone', width: 150, cellClassName: "centerred_cell"},
 ]
 
 const rows = [
@@ -35,6 +36,7 @@ export default function Staff_table() {
                 }}
                 pageSizeOptions={[5, 10]} 
                 checkboxSelection 
+                getRowHeight={() => 65}
             />
         </div>
     );

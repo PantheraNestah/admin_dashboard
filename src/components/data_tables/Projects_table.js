@@ -34,6 +34,7 @@ export default function Projects_table() {
                 }}
                 pageSizeOptions={[5, 10]} 
                 checkboxSelection 
+                getRowHeight={() => 65}
             />
         </div>
     );

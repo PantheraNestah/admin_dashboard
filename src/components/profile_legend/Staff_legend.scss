@@ -1,9 +1,9 @@
 @import "../../assets/style/vars.scss";
 
 .staff_legend {
-    padding-left: 22rem;
-    margin-top: 5rem;
-    margin-bottom: 4rem;
+    margin-left: 22rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
     .info_container {
         height: 25rem;
         margin: 0;
@@ -48,6 +48,28 @@
             }
             a.btn {
                 font-size: 13px;
+            }
+        }
+    }
+    .stats_highlights {
+        gap: 20px;
+        .stat_cont {
+            padding: 0.5rem;
+            background-color: $cust-gray1;
+            height: 350px;
+            width: calc(50% - 10px);
+            border-radius: 5px;
+        }
+    }
+}
+
+@media (max-width: 767.9px) {
+    .staff_legend {
+        margin-left: 0;
+        .stats_highlights {
+            .stat_cont {
+                width: 350px;
+                margin: 0 auto;
             }
         }
     }

@@ -39,7 +39,7 @@ const Prop_cartegory2 = ({ data }) => {
     }, [data]);
 
     return (
-        <div className="col-6"  style={{ position: 'relative', height: '150px', padding: "0" }}>
+        <div className="prop_cat2 col-6 d-flex align-items-center justify-content-center">
             <canvas ref={chartRef3} />
         </div>
     );
