@@ -15,23 +15,7 @@ const Header = () => {
 
     return (
         <header className="header col-12 d-flex border">
-            <div className="col-lg-12 d-none d-md-flex" style={{height:"100%"}}>
-                {/* <div className="side_drop col-lg-2 d-flex align-items-center">
-                    <a href="#side_menu" data-bs-toggle="collapse" aria-expanded="true" aria-controls="side_menu">
-                        <span  class="material-symbols-outlined">menu</span>
-                    </a>
-                    <h2>Dashboard</h2>
-                </div> */}
-                {/* <nav className="col-lg-7 d-flex justify-content-between">
-                    <h2>Meladen Properties ltd</h2>
-                    <div className="prof_links d-flex align-items-center justify-content-center border">
-                        <span><i class="bi bi-box-arrow-right"></i></span>
-                        <span><i class="bi bi-bell-fill"></i></span>
-                        <a href="#settingsOffcanvas" className="user_profile d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#settingsOffcanvas" aria-controls="#settingsOffcanvas">
-                            <i class="bi bi-person-circle"></i>
-                        </a>
-                    </div>
-                </nav> */}
+            <div className="col-lg-12 d-none d-lg-flex" style={{height:"100%"}}>
                 <div className="top_title col-8 d-flex align-items-end justify-content-between border" style={{ gap: "8rem"}}>
                     <h2>Meladen Properties ltd</h2>
                     <div className="prof_links d-flex align-items-center justify-content-center border">
@@ -42,14 +26,14 @@ const Header = () => {
                         </a>
                     </div>
                 </div>
-                <div id="side_menu">
+                <div id="side_menu" className="d-none d-lg-block">
                     <div className="title_section">
                         <h2>Dashboard</h2>
                     </div>
                     <div className="menu_section">
                         <div className="menu_item">
-                            <span>
-                                <a href="#project_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
+                            <span className="">
+                                <a href="#project_ops" className="side_link d-flex align-items-center border" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
                             </span>
                             <div id="project_ops" className="mini_menu collapse">
                                 <a href="#prodModal" className="d-block" data-bs-toggle="modal" data-bs-target="#prodModal">Add Project</a>
@@ -58,7 +42,7 @@ const Header = () => {
                         </div>
                         <div className="menu_item">
                             <span>
-                                <a href="#client_ops" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops"> <i class="bi bi-people-fill btsp-icons me-2" ></i> Clients</a>
+                                <a href="#client_ops" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops"> <i class="bi bi-people-fill btsp-icons me-2" ></i> Clients</a>
                             </span>
                             <div id="client_ops" className="mini_menu collapse">
                                 <a href="#clientModal" className="d-block" data-bs-toggle="modal" data-bs-target="#clientModal">Add Client</a>
@@ -66,15 +50,15 @@ const Header = () => {
                             </div>
                         </div>
                         <div className="menu_item">
-                            <NavLink to={"/staff"} className="d-flex align-items-center"><i class="bi bi-shield-fill-exclamation btsp-icons me-2"></i> Staff</NavLink>
+                            <NavLink to={"/staff"} className="side_link d-flex align-items-center"><i class="bi bi-shield-fill-exclamation btsp-icons me-2"></i> Staff</NavLink>
                             <div></div>
                         </div>
                         <div className="menu_item">
-                            <a href="#recent_activities" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#recent_activities" onClick={() => handleToggle('recent_activities')}><span class="material-symbols-outlined ggl-icons me-2">work_history</span> Recent Activities</a>
+                            <a href="#recent_activities" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#recent_activities" onClick={() => handleToggle('recent_activities')}><span class="material-symbols-outlined ggl-icons me-2">work_history</span> Recent Activities</a>
                             <div id="recent_activities" className={`activities_log collapse ${activeCollapse === 'recent_activities' ? 'show' : ''}`}></div>
                         </div>
                         <div className="menu_item">
-                            <a href="#support_sect" className="d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#support_sect" onClick={() => handleToggle('support_sect')}><span class="material-symbols-outlined ggl-icons me-2">support_agent</span> Contact Support</a>
+                            <a href="#support_sect" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#support_sect" onClick={() => handleToggle('support_sect')}><span class="material-symbols-outlined ggl-icons me-2">support_agent</span> Contact Support</a>
                             <div id="support_sect" className={`contact_sect collapse ${activeCollapse === 'support_sect' ? 'show' : ''}`}></div>
                         </div>
                     </div> 
@@ -87,7 +71,7 @@ const Header = () => {
 const Sm_nav = () => {
 
     return (
-        <div className="navbar top_nav_sm col-12 d-flex align-items-center d-md-none">
+        <div className="navbar top_nav_sm col-12 d-flex align-items-center d-lg-none">
             <h2 className="col-9 text-center border">Meladen Properties ltd</h2>
             <div className="menu_btn col-3 border d-flex align-items-center justify-content-end">
                 <a href="#menu_drop" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu_drop" aria-controls="menu_drop" aria-expanded="false" aria-label="Toggle navigation">

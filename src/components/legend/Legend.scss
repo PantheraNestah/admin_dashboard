@@ -84,7 +84,7 @@
     }
     .notifications_stats {
         margin-top: 4rem;
-        height: 300px;
+        height: 320px;
         padding: 10px 1rem;
         background-color: $cust-gray1;
         .title_div {
@@ -110,6 +110,38 @@
     height: 150px;
     padding: 0;
 }
+
+@media (max-width: 991.9px) {
+    .legend_section {
+        padding-left: 0;
+        margin-top: 3rem;
+        margin-left: 0;
+        .legend_stats {
+            margin: 0 auto;
+        }
+        .div_stat {
+            height: 220px;
+            .stat {
+                height: 250px;
+            }
+        }
+        .highlight_slider {
+            flex-direction: row;
+            gap: 10px;
+            margin: 0 auto;
+        }
+        .slider_container {
+            justify-content: center;
+        }
+        .slider {
+            width: 350px;
+        }
+        .notifications_stats {
+            margin: 4rem auto;
+        }
+    }
+}
+
 @media (max-width: 575.9px) {
     .legend_section {
         padding-left: 0;
@@ -131,12 +163,10 @@
         .highlight_slider {
             flex-wrap: wrap;
             gap: 50px;
+            margin: 0 auto;
         }
         .slider_container {
             gap: 25px;
-        }
-        .highlight_slider {
-            margin: 0 auto;
         }
         .stats_highlight {
             width: 300px;
@@ -155,3 +185,4 @@
         height: 200px;
     }
 }
+

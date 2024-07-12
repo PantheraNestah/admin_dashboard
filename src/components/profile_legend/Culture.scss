@@ -1,0 +1,59 @@
+@import "../../assets/style/vars.scss";
+.culture-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 16px;
+    background-color: #f9f9f9;
+
+    /* Scrollbar styles */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+  
+.culture-header {
+    margin-bottom: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: $cust-dark1;
+}
+  
+.culture-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+  
+.culture-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+}
+  
+.culture-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: $cust-gray7;
+}
+  
+.culture-description {
+    margin-top: 8px;
+    color: #666;
+}
+  

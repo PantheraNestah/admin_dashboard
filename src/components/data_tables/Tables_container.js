@@ -5,7 +5,7 @@ import Table1 from "./Table1";
 const Tables_container = (props) => {
     return (
         <section className="table_section border">
-            <div className="table_container col-12 col-lg-11 border">
+            <div className="table_container col-12 col-md-11 border">
                 <Table1 table={props.table} for_name={props.for_name}/>
             </div>
         </section>

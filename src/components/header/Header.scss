@@ -56,7 +56,7 @@ a {
         left: 0;
         bottom: 0;
         width: 19rem;
-        padding-left: 2rem;
+        padding-left: 1.5rem;
         border-right: 0.2px solid $cust-gray1;
         .title_section {
             margin-top: 2rem;
@@ -78,6 +78,27 @@ a {
             margin: 1rem 0;
             a {
                 text-decoration: none;
+                height: 35px;
+            }
+            .side_link {
+                position: relative;
+                padding-left: 8px;
+                transition: transform 0.2s ease-in, background-color 0.2s ease-in;
+            }
+            .side_link::before {
+                content: "";
+                width: 5px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: -1px;
+            }
+            .side_link:hover {
+                background-color: $gray-300;
+                transform: scaleX(1.06) translateX(-5px);
+            }
+            .side_link:hover::before {
+                background-color: $cust-gray7;
             }
         }
         .mini_menu {
@@ -101,7 +122,7 @@ a {
     }
 }
 
-@media (max-width: 575.9px) {
+@media (max-width: 991.9px) {
     .top_nav_sm {
         height: 3rem;
         max-height: 12rem;

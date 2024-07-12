@@ -1,8 +1,10 @@
 import React from "react";
 import "./Legend.scss";
 import PropertyChart from "../charts/Property_chart";
+import ClientChart from "../charts/ClientChart";
 import Prop_cartegory1 from "../charts/Prop_cartegory1";
 import Prop_cartegory2 from "../charts/Prop_cartegory2";
+import NotificationsLineChart from "../charts/NotificationsChart";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -34,10 +36,19 @@ const Legend = () => {
         {type: "Residential", value: 20},
         {type: "Land", value: 40}
     ];
+    const data4 = [
+        {month: 'January', value: 27},
+        {month: 'February', value: 17},
+        {month: 'March', value: 13},
+        {month: 'April', value: 20},
+        {month: 'May', value: 8},
+        {month: 'June', value: 11},
+        {month: 'July', value: 23},
+    ]
 
     return (
         <section className="legend_section border">
-            <div className="legend_stats col-11 col-lg-11 d-flex flex-column mb-4">
+            <div className="legend_stats col-11 col-md-12 col-lg-11 d-flex flex-column mb-4">
                 <div className="div_stat col-12 d-flex flex-column flex-md-row border mb-2">
                     <div className="num_stat col-12 col-md-6 d-flex flex-column align-items-center border">
                         <div className="stat_tag d-flex">
@@ -60,7 +71,7 @@ const Legend = () => {
                 </div>
                 <div className="div_stat col-12 d-flex flex-column-reverse flex-md-row border">
                     <div className="stat col-md-6 border">
-                        <PropertyChart data={data1} />
+                        <ClientChart data={data4} />
                     </div>
                     <div className="stat col-md-6 border d-flex align-items-center">
                         <article className="col-5 d-flex flex-column align-items-center justify-content-center border">
@@ -73,8 +84,8 @@ const Legend = () => {
                     </div>
                 </div>
             </div>
-            <div className="highlight_slider col-11 col-lg-11 d-flex">
-                <div className="slider_container col-12 col-lg-6 d-flex flex-column border">
+            <div className="highlight_slider col-11 col-lg-11 d-flex flex-lg-row">
+                <div className="slider_container col-12 col-md-6 d-flex flex-column border">
                     <div id="client_carousel" className="slider carousel slide" data-bs-ride="carousel">
                         <div class="slider_text d-flex flex-column align-items-left col-5">
                             <span>Satisfied clients</span>
@@ -100,7 +111,7 @@ const Legend = () => {
                         </button>
                     </div>
                 </div>
-                <div className="slider_container col-12 col-lg-6 d-flex justify-content-end align-items-end flex-column border">
+                <div className="slider_container col-12 col-md-6 d-flex justify-content-lg-end align-items-end flex-column border">
                     <div id="prop_carousel" className="slider carousel slide" data-bs-ride="carousel">
                         <div class="slider_text d-flex flex-column align-items-left col-5">
                             <span>Properties</span>
@@ -131,10 +142,12 @@ const Legend = () => {
                 <div className="title_div">
                     <div className="d-flex flex-column">
                         <p style={{fontSize: "17px", margin: "0"}}><i className="bi bi-bell-fill me-2" style={{fontSize: "20px"}}></i>Total notifications sent</p>
-                        <h4 className="col-4 d-flex align-items-center " style={{fontSize: "35px", margin: "0"}}>213 <span className="badge ms-2">3.5% <i class="bi bi-arrow-up-right ms-1"></i></span></h4>
+                        <h4 className="col-4 d-flex align-items-center " style={{fontSize: "30px", margin: "0"}}>213 <span className="badge ms-2">3.5% <i class="bi bi-arrow-up-right ms-1"></i></span></h4>
                     </div>
                 </div>
-                <div className="col-12 border" style={{height: "180px"}}></div>
+                <div className="col-12" style={{height: "180px", marginTop: "1.5rem"}}>
+                    <NotificationsLineChart />
+                </div>
             </div>
         </section>
     );

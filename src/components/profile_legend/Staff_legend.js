@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Staff_legend.scss";
+import NewsAndAnnouncements from "../profile_legend/NewsAnnounce";
+import Culture from "../profile_legend/Culture";
 
 const Staff_legend = () => {
     return (
@@ -54,8 +56,12 @@ const Staff_legend = () => {
                 </div>
             </div>
             <div className="stats_highlights col-12 col-md-11 d-flex flex-column flex-md-row">
-                <div className="stat_cont col-12 col-md-6"></div>
-                <div className="stat_cont col-12 col-md-6"></div>
+                <div className="stat_cont col-12 col-md-6">
+                    <NewsAndAnnouncements />
+                </div>
+                <div className="stat_cont col-12 col-md-6">
+                    <Culture />
+                </div>
             </div>
         </section>
     );
