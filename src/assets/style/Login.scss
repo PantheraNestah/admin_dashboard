@@ -1,0 +1,89 @@
+.form-container1 {
+    width: 600px;
+    margin-top: 5rem;
+    padding-bottom: 2rem;
+  }
+  .form-container1 .form-container1-div {
+    margin-left: 3rem;
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 4px 2px rgba(188, 32, 48, 0.4);
+    width: 500px;
+    background-color: #ffe5d0;
+  }
+  .form-container1 .form-container1-div .div-logo {
+    width: 180px;
+    margin: 1.5rem 2rem;
+  }
+  .form-container1 .form-container1-div .div-logo div {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  .form-container1 .form-container1-div .div-logo div img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  .form-container1 .form-container1-div .form-container2 {
+    height: 230px;
+    margin: 1.2rem auto;
+  }
+  .form-container1 .form-container1-div .form-container2 h2, .form-container1 .form-container1-div .form-container2 .h2 {
+    color: #495057;
+    font-size: 19px;
+    margin-bottom: 1.2rem;
+  }
+  .form-container1 .form-container1-div .form-container2 form {
+    border: none;
+    height: 160px;
+    padding: 4px;
+  }
+  .form-container1 .form-container1-div .form-container2 form input {
+    font-size: 14px;
+    border: 1px solid rgba(188, 32, 48, 0.85);
+  }
+  .form-container1 .form-container1-div .form-container2 form input :focus {
+    outline: none;
+    border-color: rgba(188, 32, 48, 0.85);
+    box-shadow: 1.2px 1.2px 2px rgba(188, 32, 48, 0.85);
+  }
+  .form-container1 .form-container1-div .form-container2 .submit-btn {
+    background-color: rgba(188, 32, 48, 0.85);
+    color: rgb(223, 220, 219);
+  }
+
+  @media (max-width: 767.9px) {
+    .form-container1 {
+      width: 350px;
+      margin-top: 5rem;
+    }
+    .form-container1 .form-container1-div {
+      width: 340px;
+      margin: 0 auto;
+    }
+    .form-container1 .form-container1-div .div-logo {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+    .form-container1 .form-container1-div .div-logo div {
+      width: 60px;
+      height: 60px;
+    }
+    .form-container1 .form-container1-div .div-logo div img {
+      width: 60px;
+      height: 60px;
+    }
+    .form-container1 .form-container1-div .form-container2 {
+      height: 200px;
+      margin: 1.2rem auto;
+    }
+    .form-container1 .form-container1-div .form-container2 h2, .form-container1 .form-container1-div .form-container2 .h2 {
+      font-size: 16px;
+    }
+    .form-container1 .form-container1-div .form-container2 form {
+      height: 140px;
+    }
+    .form-container1 .form-container1-div .form-container2 form input {
+      font-size: 12px;
+    }
+  }

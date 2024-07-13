@@ -14,11 +14,11 @@ const Header = () => {
     }
 
     return (
-        <header className="header col-12 d-flex border">
+        <header className="header col-12 d-flex">
             <div className="col-lg-12 d-none d-lg-flex" style={{height:"100%"}}>
-                <div className="top_title col-8 d-flex align-items-end justify-content-between border" style={{ gap: "8rem"}}>
+                <div className="top_title col-8 d-flex align-items-end justify-content-between" style={{ gap: "8rem"}}>
                     <h2>Meladen Properties ltd</h2>
-                    <div className="prof_links d-flex align-items-center justify-content-center border">
+                    <div className="prof_links d-flex align-items-center justify-content-center">
                         <span><i class="bi bi-box-arrow-right"></i></span>
                         <span><i class="bi bi-bell-fill"></i></span>
                         <a href="#settingsOffcanvas" className="user_profile d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#settingsOffcanvas" aria-controls="#settingsOffcanvas">
@@ -31,20 +31,25 @@ const Header = () => {
                         <h2>Dashboard</h2>
                     </div>
                     <div className="menu_section">
+                        <div class="menu_item">
+                            <span>
+                                <NavLink to={"/"} className="side_link d-flex align-items-center"><i class="bi bi-house-door-fill btsp-icons me-2"></i>Home</NavLink>
+                            </span>
+                        </div>
                         <div className="menu_item">
                             <span className="">
-                                <a href="#project_ops" className="side_link d-flex align-items-center border" data-bs-toggle="collapse" data-bs-target="#project_ops"><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
+                                <a href="#project_ops" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#project_ops" onClick={() => handleToggle('project_ops')}><span class="material-symbols-outlined ggl-icons me-2">apartment</span> Projects</a>
                             </span>
-                            <div id="project_ops" className="mini_menu collapse">
+                            <div id="project_ops" className={`mini_menu collapse ${activeCollapse === 'project_ops' ? 'show' : ''}`}>
                                 <a href="#prodModal" className="d-block" data-bs-toggle="modal" data-bs-target="#prodModal">Add Project</a>
                                 <a href="#Projects_section" className="d-block">View</a>
                             </div>
                         </div>
                         <div className="menu_item">
                             <span>
-                                <a href="#client_ops" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops"> <i class="bi bi-people-fill btsp-icons me-2" ></i> Clients</a>
+                                <a href="#client_ops" className="side_link d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#client_ops" onClick={() => handleToggle('client_ops')}> <i class="bi bi-people-fill btsp-icons me-2" ></i> Clients</a>
                             </span>
-                            <div id="client_ops" className="mini_menu collapse">
+                            <div id="client_ops" className={`mini_menu collapse ${activeCollapse === 'client_ops' ? 'show' : ''}`}>
                                 <a href="#clientModal" className="d-block" data-bs-toggle="modal" data-bs-target="#clientModal">Add Client</a>
                                 <a href="#Clients_section" className="d-block">View</a>
                             </div>
@@ -72,15 +77,18 @@ const Sm_nav = () => {
 
     return (
         <div className="navbar top_nav_sm col-12 d-flex align-items-center d-lg-none">
-            <h2 className="col-9 text-center border">Meladen Properties ltd</h2>
-            <div className="menu_btn col-3 border d-flex align-items-center justify-content-end">
+            <h2 className="col-9 col-md-10 text-center">Meladen Properties ltd</h2>
+            <div className="menu_btn col-3 col-md-2 d-flex align-items-center justify-content-end">
                 <a href="#menu_drop" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu_drop" aria-controls="menu_drop" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="ggl_icon material-symbols-outlined">menu</span>
                 </a>
             </div>
-            <div id="menu_drop" class="collapse navbar-collapse row">
-                <div className="links_side col-5">
-                    <ul className="d-flex flex-column align-items-start">
+            <div id="menu_drop" class="collapse navbar-collapse">
+                <div className="links_side col-12">
+                    <ul className="d-flex flex-column col-12">
+                        <li>
+                            <NavLink to={"/"}>Home</NavLink>
+                        </li>
                         <li>
                             <a href="/#Projects_section">Projects</a>
                         </li>
@@ -90,13 +98,16 @@ const Sm_nav = () => {
                         <li>
                             <NavLink to="/staff">Staff</NavLink>
                         </li>
+                        <li>
+                            <NavLink to={"/mobile_acc"}>Profile</NavLink>
+                        </li>
                     </ul>
                 </div>
-                <article className="profile_side col-6">
+                {/* <article className="profile_side col-6">
                     <NavLink className="profile_link mx-auto" to={"/mobile_acc"}>
                         <img src={profile_holder} alt="" />
                     </NavLink>
-                </article>
+                </article> */}
             </div>
         </div>
     );

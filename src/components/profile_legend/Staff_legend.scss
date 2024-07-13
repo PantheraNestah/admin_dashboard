@@ -63,10 +63,12 @@
     }
 }
 
-@media (max-width: 767.9px) {
+@media (max-width: 991.9px) {
     .staff_legend {
         margin-left: 0;
+        padding-left: 0;
         .stats_highlights {
+            margin: 0 auto;
             .stat_cont {
                 width: 350px;
                 margin: 0 auto;

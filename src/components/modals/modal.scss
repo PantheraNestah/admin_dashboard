@@ -100,3 +100,27 @@
 .messageModal .modal-form {
     height: 320px;
 }
+
+@media (max-width: 767.9) {
+    .clientModal .modal-form, .staffModal .modal-form {
+        height: 390px;
+        form {
+            height: 270px;
+        }
+    }
+    .messageModal .modal-form {
+        height: 340px;
+    }
+    .prodModalEdit .modal-form {
+        height: 380px;
+        form {
+            height: 290px;
+        }
+    }
+    .prodModal .modal-form {
+        height: 290px;
+        form {
+            height: 190px;
+        }
+    }
+}

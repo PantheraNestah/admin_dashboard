@@ -28,6 +28,7 @@
             }
         }
         ul.category {
+            list-style-type: none;
             font-size: 12px;
             margin: 0;
             gap: 2rem;
@@ -96,7 +97,7 @@
                 font-size: 12px;
             }
             .badge {
-                background-color: rgba($green-900, 0.5);
+                background-color: rgb(2, 102, 23);
                 color: white;
                 font-size: 12px;
                 border-radius: 2px;
@@ -120,7 +121,7 @@
             margin: 0 auto;
         }
         .div_stat {
-            height: 220px;
+            height: 230px;
             .stat {
                 height: 250px;
             }

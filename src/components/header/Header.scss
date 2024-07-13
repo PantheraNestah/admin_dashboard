@@ -75,7 +75,7 @@ a {
             background-color: $cust-gray1;
         }
         .menu_item {
-            margin: 1rem 0;
+            margin: 0.5rem 0;
             a {
                 text-decoration: none;
                 height: 35px;
@@ -107,6 +107,7 @@ a {
         .contact_sect, .activities_log {
             height: 12rem;
             margin-left: 1rem;
+            margin-top: 10px;
             background-color: $cust-color2;
         }
         .btsp-icons, .ggl-icons {
@@ -123,8 +124,11 @@ a {
 }
 
 @media (max-width: 991.9px) {
+    .header {
+        height: 4.7rem;
+    }
     .top_nav_sm {
-        height: 3rem;
+        height: 4.7rem;
         max-height: 12rem;
         padding: 0.5rem 1rem;
         margin-bottom: 2rem;
@@ -135,20 +139,18 @@ a {
             color: $cust-gray7;
         }
         .menu_btn {
-            height: 40px;
+            height: 45px;
+            padding-right: 1rem;
         }
         .ggl_icon {
             font-size: 30px;
         }
         #menu_drop {
-            /* position: fixed;
-            top: 3rem;
-            right: 2rem;
-            left: 2rem; */
-            height: 8rem;
-            padding: 1rem 1rem;
+            height: 9.6rem;
+            padding-top: 0;
             gap: 1rem;
             background-color: $cust-color2;
+            box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(0,0,0,0.2);
             border-radius: 5px;
             a {
                 text-decoration: none;
@@ -157,9 +159,9 @@ a {
             ul {
                 list-style-type: none;
                 gap: 5px;
-                padding-left: 1rem;
+                padding-left: calc(50% - 4rem);
                 margin: 0;
-                a::before {
+               /*  a::before {
                     content: "";
                     width: 4px;
                     height: 4px;
@@ -168,7 +170,7 @@ a {
                     position: absolute;
                     top: 50%;
                     left: -8px;
-                }
+                } */
             }
             .links_side, .profile_side {
                 height: 6rem;

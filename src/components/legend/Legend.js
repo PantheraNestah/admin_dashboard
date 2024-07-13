@@ -47,34 +47,34 @@ const Legend = () => {
     ]
 
     return (
-        <section className="legend_section border">
+        <section className="legend_section">
             <div className="legend_stats col-11 col-md-12 col-lg-11 d-flex flex-column mb-4">
-                <div className="div_stat col-12 d-flex flex-column flex-md-row border mb-2">
-                    <div className="num_stat col-12 col-md-6 d-flex flex-column align-items-center border">
+                <div className="div_stat col-12 d-flex flex-column flex-md-row mb-2">
+                    <div className="num_stat col-12 col-md-6 d-flex flex-column align-items-center">
                         <div className="stat_tag d-flex">
                             <span className="material-symbols-outlined me-2">domain_add</span>
                             <h3>Projects and Properties</h3>
                         </div>
-                        <article className="mx-auto d-flex flex-column align-items-center justify-content-center border" style={{marginTop: "2rem"}}>
+                        <article className="mx-auto d-flex flex-column align-items-center justify-content-center" style={{marginTop: "2rem"}}>
                             <h4>50 <span style={{fontSize: "60px"}}>+</span></h4>
                             {/* <p>Completed</p> */}
                         </article>
                         <ul className="category d-flex col-10 mx-auto align-items-center justify-content-center">
-                            <li>24% Land</li>
-                            <li>37% Residential</li>
-                            <li>39% Commercial</li>
+                            <li className="text-center">24% Land</li>
+                            <li className="text-center">37% Residential</li>
+                            <li className="text-center">39% Commercial</li>
                         </ul>
                     </div>
-                    <div className="stat col-12 col-md-6 border">
+                    <div className="stat col-12 col-md-6">
                         <PropertyChart data={data1} />
                     </div>
                 </div>
-                <div className="div_stat col-12 d-flex flex-column-reverse flex-md-row border">
-                    <div className="stat col-md-6 border">
+                <div className="div_stat col-12 d-flex flex-column-reverse flex-md-row">
+                    <div className="stat col-md-6">
                         <ClientChart data={data4} />
                     </div>
-                    <div className="stat col-md-6 border d-flex align-items-center">
-                        <article className="col-5 d-flex flex-column align-items-center justify-content-center border">
+                    <div className="stat col-md-6 d-flex align-items-center">
+                        <article className="col-5 d-flex flex-column align-items-center justify-content-center">
                             <h4>100 <span style={{fontSize: "60px"}}>+</span></h4>
                             <p>Clients Acquired</p>
                         </article>
@@ -85,7 +85,7 @@ const Legend = () => {
                 </div>
             </div>
             <div className="highlight_slider col-11 col-lg-11 d-flex flex-lg-row">
-                <div className="slider_container col-12 col-md-6 d-flex flex-column border">
+                <div className="slider_container col-12 col-md-6 d-flex flex-column">
                     <div id="client_carousel" className="slider carousel slide" data-bs-ride="carousel">
                         <div class="slider_text d-flex flex-column align-items-left col-5">
                             <span>Satisfied clients</span>
@@ -111,7 +111,7 @@ const Legend = () => {
                         </button>
                     </div>
                 </div>
-                <div className="slider_container col-12 col-md-6 d-flex justify-content-lg-end align-items-end flex-column border">
+                <div className="slider_container col-12 col-md-6 d-flex justify-content-lg-end align-items-end flex-column">
                     <div id="prop_carousel" className="slider carousel slide" data-bs-ride="carousel">
                         <div class="slider_text d-flex flex-column align-items-left col-5">
                             <span>Properties</span>
@@ -138,7 +138,7 @@ const Legend = () => {
                     </div>
                 </div>
             </div>
-            <div class="notifications_stats col-12 col-md-11 border">
+            <div class="notifications_stats col-12 col-md-11">
                 <div className="title_div">
                     <div className="d-flex flex-column">
                         <p style={{fontSize: "17px", margin: "0"}}><i className="bi bi-bell-fill me-2" style={{fontSize: "20px"}}></i>Total notifications sent</p>
