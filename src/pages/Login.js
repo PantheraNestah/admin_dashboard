@@ -2,22 +2,25 @@ import React, { useState, useContext } from "react";
 import logo_icon from "../assets/img/logo-icon.png"
 import "../assets/style/Login.scss";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/login', {
+        const response = await fetch('http://localhost:8080/auth/generateToken', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ "username": email, "password": password }),
         });
         const data = await response.json();
-        if(data.token) {
-            login(data.token);
+        if(data.message) {
+            login(data.message);
+            navigate('/staff');
         } else {
             alert("Invalid credentials");
         }

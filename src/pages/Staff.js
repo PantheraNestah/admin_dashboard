@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Staff_legend from "../components/profile_legend/Staff_legend";
