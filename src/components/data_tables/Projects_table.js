@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
+import api from '../../utils/Api';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -21,7 +23,32 @@ const rows = [
     {id: 9, project: 'Project 9', value: 'KSH 900 K', clients: 90},
 ]
 
+const processProjObj = (proj_obj) => {
+    return {
+        id: proj_obj.id,
+        project: proj_obj.prodName,
+        value: `KSH ${proj_obj.prodValue / 1000000} M`,
+        clients: proj_obj.clientDtos.length
+    }
+};
+const fetchProjects = async () => {
+    const response = await api('http://localhost:8080/api/projects/all', {
+        method: 'GET',
+    });
+    const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
+    return (proj_objs)
+};
+
 export default function Projects_table() {
+    const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+        const projects = fetchProjects().then((projects) => {
+            console.log(projects);
+            setRecords(projects);
+        });
+    });
+
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 

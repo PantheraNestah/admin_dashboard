@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
 import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
+import axios from 'axios';
+import api from '../../utils/Api';
 
 const columns = [
     { 
@@ -31,11 +34,38 @@ const rows = [
     {id: 10, image: profile_placeholder, name: 'John Doe', department: 'IT', phone: '0712345678', email: 'johndoe@gmail.com'},
 ]
 
+const processStaffObj = (staff_obj) => {
+    return {
+        id: staff_obj.id,
+        image: (staff_obj.photo != null) ? `http://localhost:8080/files/staffs/photo?filename=${staff_obj.photo}` : profile_placeholder,
+        name: staff_obj.name,
+        department: staff_obj.department,
+        phone: staff_obj.phone,
+        email: staff_obj.email
+    }
+}
+const fetchStaff = async () => {
+    const response = await api('http://localhost:8080/api/staffs/all', {
+        method: 'GET',
+    });
+    const staff_objs = response.data.staffs.map((staff) => processStaffObj(staff));
+    return (staff_objs)
+}
+
 export default function Staff_table() {
+    const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+        const staffs = fetchStaff().then((staffs) => {
+            console.log(staffs);
+            setRecords(staffs);
+        });
+    }, []);
+
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 
-                rows={rows} 
+                rows={records} 
                 columns={columns} 
                 initialState={{
                     pagination: {
