@@ -1,3 +1,5 @@
+import React from "react";
+
 const api = async (url, options = {}) => {
     const token = localStorage.getItem('token');
     const headers = {
@@ -10,9 +12,20 @@ const api = async (url, options = {}) => {
     if (!response.ok) {
       if (response.status === 401) {
         // Handle unauthorized response, e.g., redirect to login
-        window.location.href = '/login';
+        //window.location.href = '/login';
       }
-      throw new Error('Network response was not ok');
+      else if (response.status === 403) {
+        // Handle forbidden response
+        //window.location.href = '/login';
+      }
+
+      //handle internal server error
+      if (response.status === 500) {
+        console.log(await response.json());
+        //window.location.href = '/login';
+      }
+      //throw new Error('Network response was not ok');
+      //console.log(await response.json());
     }
   
     return (await response.json());

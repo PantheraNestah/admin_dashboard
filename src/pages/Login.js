@@ -18,6 +18,7 @@ const Login = () => {
             body: JSON.stringify({ "username": email, "password": password }),
         });
         const data = await response.json();
+        console.log(data.data);
         if(data.message) {
             login(data.message);
             navigate('/home');

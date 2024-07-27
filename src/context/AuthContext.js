@@ -3,11 +3,14 @@ import React, { createContext, useState, useEffect } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [authState, setAuthState] = useState({
-    token: null,
-    isAuthenticated: false,
-    user: null,
-  });
+  const [authState, setAuthState] = useState(
+    (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : 
+    {
+      token: null,
+      isAuthenticated: false,
+      user: null,
+    }
+  );
 
   useEffect(() => {
     // Check for token in localStorage on initial load
