@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import profile_holder from "../../assets/img/profile_placeholder.jpg";
+import AuthContext from "../../context/AuthContext";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Header = () => {
     const [activeCollapse, setActiveCollapse] = useState("recent_activities");
+    const { logout } = useContext(AuthContext);
   
     const handleToggle = (collapseId) => {
       setActiveCollapse((prev) => (prev === collapseId ? null : collapseId));
     }
+    const navigate = useNavigate();
+    const logout_user = () => {
+        logout();
+        navigate("/login");
+    };
 
     return (
         <header className="header col-12 d-flex">
@@ -19,7 +26,7 @@ const Header = () => {
                 <div className="top_title col-8 d-flex align-items-end justify-content-between" style={{ gap: "8rem"}}>
                     <h2>Meladen Properties ltd</h2>
                     <div className="prof_links d-flex align-items-center justify-content-center">
-                        <span><i class="bi bi-box-arrow-right"></i></span>
+                        <span onClick={logout_user} style={{cursor: "pointer"}}><i class="bi bi-box-arrow-right"></i></span>
                         <span><i class="bi bi-bell-fill"></i></span>
                         <a href="#settingsOffcanvas" className="user_profile d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#settingsOffcanvas" aria-controls="#settingsOffcanvas">
                             <i class="bi bi-person-circle"></i>
@@ -33,7 +40,7 @@ const Header = () => {
                     <div className="menu_section">
                         <div class="menu_item">
                             <span>
-                                <NavLink to={"/"} className="side_link d-flex align-items-center"><i class="bi bi-house-door-fill btsp-icons me-2"></i>Home</NavLink>
+                                <NavLink to={"/home"} className="side_link d-flex align-items-center"><i class="bi bi-house-door-fill btsp-icons me-2"></i>Home</NavLink>
                             </span>
                         </div>
                         <div className="menu_item">

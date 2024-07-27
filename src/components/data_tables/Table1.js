@@ -1,5 +1,6 @@
 import React from "react";
 import "./Tables_container.scss";
+import { projnames_list } from "./Projects_table";
 
 const Table1 = (props) => {
 
@@ -11,16 +12,9 @@ const Table1 = (props) => {
                     <>
                         <p><span>Property Name</span> Clients</p>
                         <select name="property_active" id="property_select" className="mt-1 p-1">
-                            <option value="">Default Project</option>
-                            <option value="">Project 1</option>
-                            <option value="">Project 2</option>
-                            <option value="">Project 3</option>
-                            <option value="">Project 4</option>
-                            <option value="">Project 5</option>
-                            <option value="">Project 6</option>
-                            <option value="">Project 7</option>
-                            <option value="">Project 8</option>
-                            <option value="">Project 9</option>
+                            {projnames_list.map((projname, index) => (
+                                <option value={projname} key={index}>{projname}</option>
+                            ))}
                         </select>
                     </>
                 ): null}
@@ -83,7 +77,7 @@ const Table1 = (props) => {
                 <div className="search">
                     <input type="text" placeholder="Type to search..." className="text-center" />
                 </div>
-                <props.table />
+                <props.table property={{}}/>
             </div>
         </div>
     );

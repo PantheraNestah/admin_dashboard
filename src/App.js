@@ -16,10 +16,8 @@ function App() {
         <div className="App">
           <Head_Meta /> 
           <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/staff" element={<Staff />} /> */}
-            {/* <ProtectedRoute path="/staff" element={<Staff />} /> */}
             <Route element={<ProtectedRoute />} >
+              <Route  path="/home" element={<Home />} /> 
               <Route  path="/staff" element={<Staff />} /> 
             </Route>
             <Route path="/mobile_acc" element={<Mobile_acc_page />} />

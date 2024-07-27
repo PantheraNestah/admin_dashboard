@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
 import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
+import api from '../../utils/Api';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -23,11 +25,51 @@ const rows = [
     {id: 10, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
 ]
 
-export default function Staff_table() {
+var projnames_list = [];
+var clients_list = [];
+const projname_n_id = (proj_obj) => {
+    return {
+        id: proj_obj.id,
+        project: proj_obj.prodName,
+    }
+};
+const client_obj = (client) => {
+
+    return {
+        id: client.id,
+        name: client.name,
+        email: client.email,
+        phone: client.phone,
+    }
+};
+const process_clients = (proj_obj) => {
+    return {
+        id: proj_obj.id,
+        clients: proj_obj.clientDtos.map((client) => client_obj(client)),
+    }
+};
+const fetchClients = async () => {
+    const response = await api('http://localhost:8080/api/projects/all', {
+        method: 'GET',
+    });
+    clients_list = response.data.projects.map((proj) => process_clients(proj));
+    //console.log(clients_list);
+}
+
+export default function Clients_table(props) {
+    const [records, setRecords] = useState([]);
+    
+    useEffect(() => {
+        fetchClients().then(() => {
+            //setRecords(clients_list[0].clients);
+            //console.log(clients_list);
+            setRecords(clients_list[0].clients);
+        });
+    }, [clients_list, records]);
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 
-                rows={rows} 
+                rows={records} 
                 columns={columns} 
                 initialState={{
                     pagination: {

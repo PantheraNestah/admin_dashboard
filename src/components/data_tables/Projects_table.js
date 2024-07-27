@@ -38,21 +38,30 @@ const fetchProjects = async () => {
     const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
     return (proj_objs)
 };
+var projnames_list = [];
+var projs_list = [];
 
-export default function Projects_table() {
+fetchProjects().then((projects) => {
+    projs_list = projects;
+    projnames_list = projects.map((proj) => proj.project);
+});
+
+export default function Projects_table(props) {
     const [records, setRecords] = useState([]);
 
     useEffect(() => {
         const projects = fetchProjects().then((projects) => {
-            console.log(projects);
+            //console.log(projects);
             setRecords(projects);
+            projs_list = projects;
+            projnames_list = projects.map((proj) => proj.project);
         });
-    });
+    } , []);
 
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 
-                rows={rows} 
+                rows={projs_list} 
                 columns={columns} 
                 initialState={{
                     pagination: {
@@ -66,3 +75,5 @@ export default function Projects_table() {
         </div>
     );
 }
+
+export { projnames_list };

@@ -52,7 +52,7 @@ const fetchStaff = async () => {
     return (staff_objs)
 }
 
-export default function Staff_table() {
+export default function Staff_table(props) {
     const [records, setRecords] = useState([]);
 
     useEffect(() => {

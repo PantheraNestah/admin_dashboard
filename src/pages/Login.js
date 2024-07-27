@@ -20,7 +20,7 @@ const Login = () => {
         const data = await response.json();
         if(data.message) {
             login(data.message);
-            navigate('/staff');
+            navigate('/home');
         } else {
             alert("Invalid credentials");
         }

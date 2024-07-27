@@ -11,10 +11,10 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check for token in localStorage on initial load
-    const token = localStorage.getItem('token');
-    if (token) {
+    const auth_token = localStorage.getItem('token');
+    if (auth_token) {
       setAuthState({
-        token,
+        token: auth_token,
         isAuthenticated: true,
         user: { /* You can fetch user info here if needed */ },
       });
@@ -28,10 +28,13 @@ export const AuthProvider = ({ children }) => {
       isAuthenticated: true,
       user: { /* You can fetch user info here if needed */ },
     });
+    localStorage.setItem("auth_state", JSON.stringify(authState));
+    //console.log("auth_state: ", JSON.parse(localStorage.getItem("auth_state")));
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem("auth_state");
     setAuthState({
       token: null,
       isAuthenticated: false,
