@@ -25,6 +25,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (token) => {
+    localStorage.removeItem("auth_state");
+    localStorage.removeItem('token');
+    
     localStorage.setItem('token', token);
     setAuthState({
       token,

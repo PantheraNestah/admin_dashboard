@@ -32,18 +32,37 @@ const processProjObj = (proj_obj) => {
     }
 };
 const fetchProjects = async () => {
+    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
+    console.log("AuthState: " + auth_state);
+    if (auth_state === null) {
+        return;
+    }
+    /* if (auth_state !== null) {
+        const response = await api('http://localhost:8080/api/projects/all', {
+            method: 'GET',
+        });
+        if (typeof response != 'undefined') {
+            const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
+            return (proj_objs)
+        }
+    } */
     const response = await api('http://localhost:8080/api/projects/all', {
         method: 'GET',
     });
-    const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
-    return (proj_objs)
+    if (typeof response != 'undefined') {
+        const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
+        return (proj_objs)
+    }
 };
 var projnames_list = [];
 var projs_list = [];
 
 fetchProjects().then((projects) => {
     projs_list = projects;
-    projnames_list = projects.map((proj) => proj.project);
+    /* if (typeof projects != 'undefined') {
+        projnames_list = projects.map((proj) => proj.project);
+    } */
+   projnames_list = projects.map((proj) => proj.project);
 });
 
 export default function Projects_table(props) {

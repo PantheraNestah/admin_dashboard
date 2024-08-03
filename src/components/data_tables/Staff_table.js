@@ -45,11 +45,17 @@ const processStaffObj = (staff_obj) => {
     }
 }
 const fetchStaff = async () => {
-    const response = await api('http://localhost:8080/api/staffs/all', {
-        method: 'GET',
-    });
-    const staff_objs = response.data.staffs.map((staff) => processStaffObj(staff));
-    return (staff_objs)
+    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
+    if (auth_state === null) {
+        return;
+    }
+    if (auth_state !== null) {
+        const response = await api('http://localhost:8080/api/staffs/all', {
+            method: 'GET',
+        });
+        const staff_objs = response.data.staffs.map((staff) => processStaffObj(staff));
+        return (staff_objs)
+    }
 }
 
 export default function Staff_table(props) {

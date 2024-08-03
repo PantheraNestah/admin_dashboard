@@ -49,11 +49,16 @@ const process_clients = (proj_obj) => {
     }
 };
 const fetchClients = async () => {
-    const response = await api('http://localhost:8080/api/projects/all', {
-        method: 'GET',
-    });
-    clients_list = response.data.projects.map((proj) => process_clients(proj));
-    //console.log(clients_list);
+    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
+    if (auth_state === null) {
+        return;
+    }
+    if (auth_state !== null) {
+        const response = await api('http://localhost:8080/api/projects/all', {
+            method: 'GET',
+        });
+        clients_list = response.data.projects.map((proj) => process_clients(proj));
+    }
 }
 
 export default function Clients_table(props) {

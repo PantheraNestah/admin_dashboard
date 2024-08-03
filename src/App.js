@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ProtectedRoute from "./context/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import Head_Meta from "./components/header/Head_Meta";
@@ -16,6 +16,7 @@ function App() {
         <div className="App">
           <Head_Meta /> 
           <Routes>
+            <Route path="/" element={<Navigate to={"/login"} />} />
             <Route element={<ProtectedRoute />} >
               <Route  path="/home" element={<Home />} /> 
               <Route  path="/staff" element={<Staff />} /> 

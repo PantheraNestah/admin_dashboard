@@ -4,9 +4,9 @@ import AuthContext from "./AuthContext";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
     const authState = JSON.parse(localStorage.getItem("auth_state"));
-  
+    const authState2 = useContext(AuthContext);
     return (
-        authState.isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+        (authState.isAuthenticated || authState2.isAuthenticated) ? <Outlet /> : <Navigate to="/login" />
     );
   };
   
