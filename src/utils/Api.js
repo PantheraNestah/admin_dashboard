@@ -1,15 +1,14 @@
 import React from "react";
 
 const api = async (url, options = {}) => {
-    const token = localStorage.getItem('token');
     var response = null;
     const headers = {
       'Content-Type': 'application/json',
       ...(options.headers || {}),
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
     };
 
-    if (token != null) {
+    if (options.token != null) {
       response = await fetch(url, { ...options, headers });
     }
 
