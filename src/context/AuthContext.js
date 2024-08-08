@@ -1,51 +1,31 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { isTokenExpired } from '../utils/checkTokenExpiry';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [authState, setAuthState] = useState(
-    (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : 
-    {
-      token: null,
-      isAuthenticated: false,
-      user: null,
-    }
-  );
+  const [authState, setAuthState] = useState({});
 
-  useEffect(() => {
-    // Check for token in localStorage on initial load
-    const auth_token = localStorage.getItem('token');
-    if (auth_token) {
-      setAuthState({
-        token: auth_token,
-        isAuthenticated: true,
-        user: { /* You can fetch user info here if needed */ },
-      });
-    }
-  }, []);
-
-  const login = (token) => {
-    localStorage.removeItem("auth_state");
-    localStorage.removeItem('token');
-    
-    localStorage.setItem('token', token);
-    setAuthState({
-      token,
+  const login = (token, auth_data) => {
+    const newAuthState = {
+      token: auth_data.token,
+      expiry: auth_data.expiry,
       isAuthenticated: true,
-      user: { /* You can fetch user info here if needed */ },
-    });
-    localStorage.setItem("auth_state", JSON.stringify(authState));
-    //console.log("auth_state: ", JSON.parse(localStorage.getItem("auth_state")));
+      user: {},
+    };
+    setAuthState(newAuthState);
+    sessionStorage.setItem("auth_state", JSON.stringify(newAuthState));
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem("auth_state");
     setAuthState({
       token: null,
+      expiry: null,
       isAuthenticated: false,
       user: null,
     });
+    sessionStorage.removeItem("auth_state");
   };
 
   return (
