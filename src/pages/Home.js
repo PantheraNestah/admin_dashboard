@@ -11,14 +11,20 @@ import Client_modal from "../components/modals/Client_modal";
 import Email_modal from "../components/modals/Email_modal";
 import Sms_modal from "../components/modals/Sms_modal";
 import Settings_offcanvas from "../components/app_offcanvas/Settings_offcanvas";
+import { ProjslistProvider } from "../context/Proj_names_ctx";
+import { ClientsProvider } from "../context/Proj_names_ctx";
 
 const Home = () => {
     return (
         <div className="App_page w-100">
             <Header />
             <Legend />
-            <Tables_container table={Projects_table} for_name={"Projects"} />
-            <Tables_container table={Clients_table} for_name={"Clients"} />
+            <ProjslistProvider>
+                <Tables_container table={Projects_table} for_name={"Projects"} />
+                <ClientsProvider>
+                    <Tables_container table={Clients_table} for_name={"Clients"} />
+                </ClientsProvider>
+            </ProjslistProvider>
             <Prod_modal />
             <Prod_edit_modal />
             <Client_modal />
