@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
 import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
 import axios from 'axios';
+import AuthContext from '../../context/AuthContext';
 import api from '../../utils/Api';
+import { isTokenExpired } from '../../utils/checkTokenExpiry';
 
 const columns = [
     { 
@@ -44,14 +46,14 @@ const processStaffObj = (staff_obj) => {
         email: staff_obj.email
     }
 }
-const fetchStaff = async () => {
-    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
+const fetchStaff = async (auth_state) => {
     if (auth_state === null) {
         return;
     }
-    if (auth_state !== null) {
+    if (!isTokenExpired(auth_state.expiry)) {
         const response = await api('http://localhost:8080/api/staffs/all', {
             method: 'GET',
+            token: auth_state.token
         });
         const staff_objs = response.data.staffs.map((staff) => processStaffObj(staff));
         return (staff_objs)
@@ -60,13 +62,14 @@ const fetchStaff = async () => {
 
 export default function Staff_table(props) {
     const [records, setRecords] = useState([]);
+    const authState = useContext(AuthContext);
 
     useEffect(() => {
-        const staffs = fetchStaff().then((staffs) => {
+        const staffs = fetchStaff(authState.authState).then((staffs) => {
             console.log(staffs);
             setRecords(staffs);
         });
-    }, []);
+    }, [authState]);
 
     return (
         <div style={{height: 400, width: '100%'}}>

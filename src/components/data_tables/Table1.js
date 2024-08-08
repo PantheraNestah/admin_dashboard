@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Tables_container.scss";
-import { projnames_list } from "./Projects_table";
+import { useProjnames } from "../../context/Proj_names_ctx";
+import { useActiveProjId } from "../../context/Proj_names_ctx";
 
 const Table1 = (props) => {
+    //const { activeProjId } = useActiveProjId();
+    const { active_proj_id, setActive_proj_id } = useActiveProjId();
+    const { projnames_list } = useProjnames();
+    const [local_projs_list, setLocal_projs_list] = useState(projnames_list);
+
+    const option_change = (event) => {
+        const index = event.target.selectedIndex
+        const proj_id = event.target.options[index].getAttribute('data-id')
+        console.log(`clicked projname of index: ${proj_id}`)
+        setActive_proj_id(proj_id)
+    }
+    useEffect(() => {
+        setLocal_projs_list(projnames_list)
+        console.log(local_projs_list)
+    }, [projnames_list])
 
     return (
         <div id={`${props.for_name}_section`} className="data_table col-12 col-lg-11 mx-lg-auto">
@@ -10,10 +26,16 @@ const Table1 = (props) => {
                 <h2 className="mb-2">{props.for_name} Details</h2>
                 { props.for_name === "Clients" ? (
                     <>
-                        <p><span>Property Name</span> Clients</p>
-                        <select name="property_active" id="property_select" className="mt-1 p-1">
-                            {projnames_list.map((projname, index) => (
-                                <option value={projname} key={index}>{projname}</option>
+                        <p><span>Property specific</span> Clients</p>
+                        <select name="property_active" id="property_select" className="mt-1 p-1" onChange={option_change}>
+                            {local_projs_list.map((projname_n_id, index) => (
+                                <option 
+                                    value={projname_n_id.project} 
+                                    key={projname_n_id.id}
+                                    data-id={projname_n_id.id}
+                                >
+                                    {projname_n_id.project}
+                                </option>
                             ))}
                         </select>
                     </>
@@ -77,7 +99,10 @@ const Table1 = (props) => {
                 <div className="search">
                     <input type="text" placeholder="Type to search..." className="text-center" />
                 </div>
-                <props.table property={{}}/>
+                {props.for_name == "Clients" ? 
+                    <props.table prop_id = {{}} /> : <props.table />
+                }
+                {/* <props.table/> */}
             </div>
         </div>
     );

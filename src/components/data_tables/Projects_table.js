@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { type } from '@testing-library/user-event/dist/type';
 import api from '../../utils/Api';
+import { isTokenExpired } from '../../utils/checkTokenExpiry';
+import { useProjslist } from '../../context/Proj_names_ctx';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -31,56 +32,36 @@ const processProjObj = (proj_obj) => {
         clients: proj_obj.clientDtos.length
     }
 };
-const fetchProjects = async () => {
-    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
-    console.log("AuthState: " + auth_state);
-    if (auth_state === null) {
+const fetchProjects = async (auth_state) => {
+    console.log("AuthState: " + {...auth_state});
+    if (isTokenExpired(auth_state.expiry)) {
         return;
     }
-    /* if (auth_state !== null) {
+    else {
         const response = await api('http://localhost:8080/api/projects/all', {
             method: 'GET',
+            token: auth_state.token,
         });
         if (typeof response != 'undefined') {
+            console.log(response)
             const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
             return (proj_objs)
         }
-    } */
-    const response = await api('http://localhost:8080/api/projects/all', {
-        method: 'GET',
-    });
-    if (typeof response != 'undefined') {
-        const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
-        return (proj_objs)
     }
 };
-var projnames_list = [];
-var projs_list = [];
-
-fetchProjects().then((projects) => {
-    projs_list = projects;
-    /* if (typeof projects != 'undefined') {
-        projnames_list = projects.map((proj) => proj.project);
-    } */
-   projnames_list = projects.map((proj) => proj.project);
-});
 
 export default function Projects_table(props) {
     const [records, setRecords] = useState([]);
+    const { projs_list } = useProjslist();
+    const [projects_local, setProjects_local] = useState(projs_list)
 
     useEffect(() => {
-        const projects = fetchProjects().then((projects) => {
-            //console.log(projects);
-            setRecords(projects);
-            projs_list = projects;
-            projnames_list = projects.map((proj) => proj.project);
-        });
-    } , []);
-
+        setProjects_local(projs_list)
+    }, [projs_list])
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 
-                rows={projs_list} 
+                rows={projects_local} 
                 columns={columns} 
                 initialState={{
                     pagination: {
@@ -94,5 +75,3 @@ export default function Projects_table(props) {
         </div>
     );
 }
-
-export { projnames_list };

@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { type } from '@testing-library/user-event/dist/type';
 import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
+import AuthContext from '../../context/AuthContext';
 import api from '../../utils/Api';
+import { isTokenExpired } from '../../utils/checkTokenExpiry';
+import { useClients } from '../../context/Proj_names_ctx';
+import { useActiveProjId } from '../../context/Proj_names_ctx';
 
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -12,69 +16,57 @@ const columns = [
     {field: 'phone', headerName: 'Phone', width: 150, cellClassName: "centerred_cell"},
 ]
 
-const rows = [
-    {id: 1, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 2, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 3, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 4, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 5, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 6, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 7, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 8, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 9, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-    {id: 10, name: 'John Doe', email: 'johndoe@gmail.com', phone: '0712345678'},
-]
-
-var projnames_list = [];
-var clients_list = [];
-const projname_n_id = (proj_obj) => {
-    return {
-        id: proj_obj.id,
-        project: proj_obj.prodName,
-    }
-};
-const client_obj = (client) => {
-
-    return {
-        id: client.id,
-        name: client.name,
-        email: client.email,
-        phone: client.phone,
-    }
-};
-const process_clients = (proj_obj) => {
-    return {
-        id: proj_obj.id,
-        clients: proj_obj.clientDtos.map((client) => client_obj(client)),
-    }
-};
-const fetchClients = async () => {
-    const auth_state = (localStorage.getItem("auth_state") !== null) ? JSON.parse(localStorage.getItem("auth_state")) : null;
-    if (auth_state === null) {
-        return;
-    }
-    if (auth_state !== null) {
-        const response = await api('http://localhost:8080/api/projects/all', {
-            method: 'GET',
-        });
-        clients_list = response.data.projects.map((proj) => process_clients(proj));
-    }
-}
-
 export default function Clients_table(props) {
-    const [records, setRecords] = useState([]);
+    const { clients_list } = useClients();
+    const [all_clients_list, setAll_clients_list] = useState(clients_list);
+    const [active_proj_clients, setActive_proj_clients] = useState([]);
+    const { active_proj_id, setActive_proj_id } = useActiveProjId();
+    const [isDefaultId, setIsDefaultId] = useState(true);
     
+    /* useEffect(() => {
+        setAll_clients_list(clients_list);
+    }, [clients_list]);
+
     useEffect(() => {
-        fetchClients().then(() => {
-            //setRecords(clients_list[0].clients);
-            //console.log(clients_list);
-            setRecords(clients_list[0].clients);
-        });
-    }, [clients_list, records]);
+        console.log(active_proj_id);
+        if (all_clients_list.length > 0) {
+            if (isDefaultId) {
+                setActive_proj_id(all_clients_list[0].id);
+                setIsDefaultId(false);
+            }
+            else {
+                setActive_proj_id(active_proj_id);
+            }
+        }
+    }, [all_clients_list]);
+    useEffect(() => {
+        if (all_clients_list.length > 0) {
+            const projectClients = all_clients_list.find(proj => proj.id === active_proj_id)?.clients;
+            setActive_proj_clients(projectClients);
+            console.log("Current active proj's clients", projectClients);
+        }
+    }, [active_proj_id, all_clients_list]); */
+    
+    // Initialize active_proj_id based on clients_list when it first loads
+    useEffect(() => {
+        if (clients_list.length > 0 && active_proj_id === 0) {
+            setActive_proj_id(clients_list[0].id);
+        }
+    }, [clients_list, active_proj_id, setActive_proj_id]);
+    // Update active_proj_clients when active_proj_id or clients_list change
+    useEffect(() => {
+        if (clients_list.length > 0) {
+            //console.log("[ ALL CLIENTS LIST ] : ", clients_list);
+            const projectClients = clients_list.find(proj => proj.id == active_proj_id)?.clients || [];
+            setActive_proj_clients(projectClients);
+            console.log("Current active proj's clients", projectClients);
+        }
+    }, [active_proj_id, clients_list]);
+    
     return (
         <div style={{height: 400, width: '100%'}}>
             <DataGrid 
-                rows={records} 
+                rows={active_proj_clients} 
                 columns={columns} 
                 initialState={{
                     pagination: {
