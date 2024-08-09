@@ -23,13 +23,13 @@ const Home = () => {
                 <Tables_container table={Projects_table} for_name={"Projects"} />
                 <ClientsProvider>
                     <Tables_container table={Clients_table} for_name={"Clients"} />
+                    <Email_modal />
+                    <Sms_modal />
                 </ClientsProvider>
+                <Prod_edit_modal />
+                <Client_modal />
             </ProjslistProvider>
             <Prod_modal />
-            <Prod_edit_modal />
-            <Client_modal />
-            <Email_modal />
-            <Sms_modal />
             <Settings_offcanvas />
             <Footer />
         </div>

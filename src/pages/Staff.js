@@ -11,6 +11,8 @@ import Email_modal from "../components/modals/Email_modal";
 import Sms_modal from "../components/modals/Sms_modal";
 import Staff_modal from "../components/modals/Staff_modal";
 import Settings_offcanvas from "../components/app_offcanvas/Settings_offcanvas";
+import { ProjslistProvider } from "../context/Proj_names_ctx";
+import { ClientsProvider } from "../context/Proj_names_ctx";
 
 const Staff = () => {
     return (
@@ -18,11 +20,15 @@ const Staff = () => {
             <Header />
             <Staff_legend />
             <Tables_container table={Staff_table} for_name={"Staff"} />
+            <ProjslistProvider>
+                <Prod_edit_modal />
+                <Client_modal />
+                <ClientsProvider>
+                    <Email_modal />
+                    <Sms_modal />
+                </ClientsProvider>
+            </ProjslistProvider>
             <Prod_modal />
-            <Prod_edit_modal />
-            <Client_modal />
-            <Email_modal />
-            <Sms_modal />
             <Staff_modal />
             <Settings_offcanvas />
             <Footer />
