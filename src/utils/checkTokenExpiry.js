@@ -1,4 +1,4 @@
 export const isTokenExpired = (expiryTime) => {
-    const currentTime = new Date().toISOString();
+    const currentTime = new Date().getTime();
     return currentTime > expiryTime;
 };
