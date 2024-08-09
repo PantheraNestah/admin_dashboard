@@ -1,12 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import "./modal.scss";
+import api from "../../utils/Api";
+import AuthContext from '../../context/AuthContext';
+import { useProjslist } from '../../context/Proj_names_ctx';
 
 const Prod_edit_modal = (props) => {
     const [prodSearch, setProdSearch] = useState("");
     const [prodFound, setProdFound] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [submitFailure, setSubmitFailure] = useState(false);
+    const [prodName, setProdName] = useState("");
+    const [prodValue, setProdValue] = useState("");
+    const [clients, setClients] = useState("");
+    const { projs_list } = useProjslist();
+    const [projects_local, setProjects_local] = useState(projs_list)
 
+    useEffect(() => {
+        setProjects_local(projs_list)
+    }, [projs_list])
     const handle_prod_search = (e) => {
-        setProdFound(true);
+        e.preventDefault();
+        projects_local.find((proj) => {
+            if (proj.id == prodSearch) {
+                setProdName(proj.project);
+                setProdValue(proj.value);
+                setClients(proj.clients);
+                setProdFound(true);
+            }
+        });
     };
 
     return (
@@ -23,7 +44,7 @@ const Prod_edit_modal = (props) => {
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodIdEdit">Search Id</label>
                                     <span class="d-flex justify-content-between searchField">
-                                        <input class="text-center" type="text" name="prodId" id="prodIdEdit" placeholder="search by Id" onChange={setProdSearch} />
+                                        <input class="text-center" type="text" name="prodId" id="prodIdEdit" placeholder="search by Id" onChange={(e) => {setProdSearch(e.target.value)}} />
                                         <span id="searchProdId" class="text-center" onClick={handle_prod_search}>
                                             <i class="bi bi-search"></i>
                                         </span>
@@ -31,11 +52,11 @@ const Prod_edit_modal = (props) => {
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodNameEdit">Name</label>
-                                    <input class="text-center" type="text" name="prodName" id="prodNameEdit" placeholder="e.g The real homes" disabled />
+                                    <input class="text-center" type="text" name="prodName" id="prodNameEdit" placeholder="e.g The real homes" value={prodName} disabled />
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodValueEdit">Value</label>
-                                    <input class="text-center" type="text" name="prodValue" id="prodValueEdit" placeholder="e.g 19.2M" disabled />
+                                    <input class="text-center" type="text" name="prodValue" id="prodValueEdit" placeholder="e.g 19.2M" value={prodValue} disabled />
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="">Photo</label>
@@ -43,7 +64,7 @@ const Prod_edit_modal = (props) => {
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="clientsEdit">Clients NO</label>
-                                    <input class="text-center" type="text" name="clients" id="clientsEdit" disabled />
+                                    <input class="text-center" type="text" name="clients" id="clientsEdit" value={clients} disabled />
                                 </span>
                                 <span class="operation-response mx-auto">
                                     <label class="success mx-auto d-none align-items-center">

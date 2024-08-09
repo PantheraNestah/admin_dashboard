@@ -1,35 +1,44 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import "./modal.scss";
-import axios from "axios";
+import api from "../../utils/Api";
+import AuthContext from '../../context/AuthContext';
 
-const Prod_modal = ({ show, handleClose, product }) => {
+const Prod_modal = () => {
+    const auth_state = useContext(AuthContext);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodName, setProdName] = useState("");
     const [prodValue, setProdValue] = useState("");
+    const API_URL = process.env.REACT_APP_API_URL;
     
     const handle_submission = (e) => {
+        const today = new Date()
+        var regDate = today.toISOString().slice(0, 10)
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("prodName", prodName);
-        formData.append("prodValue", prodValue);
-
-        axios.post("http://localhost:5000/api/products", formData)
-        .then(res => {
-            if (res.data.status === "success") {
+        const json_data = {
+            "prodName": prodName,
+            "prodValue": prodValue,
+            "creationDate": regDate
+        };
+        if(json_data.prodValue.endsWith("M"))
+        {
+            var val = json_data.prodValue.slice(0, -1)
+            json_data["prodValue"] = val * 1000000
+        }
+        api(`${API_URL}/projects/new`,
+            {
+                method: "POST",
+                token: auth_state.authState.token,
+                body: JSON.stringify(json_data)
+            }
+        ).then((response) => {
+            if (response.statusCode == 201) {
                 setSubmitSuccess(true);
                 setTimeout(() => {
                     setSubmitSuccess(false);
-                    setProdName("");
-                    setProdValue("");
-                }, 5000);
-            } else {
-                setSubmitFailure(true);
-                setTimeout(() => {
-                    setSubmitFailure(false);
-                }, 5000);
+                }, 2000);
             }
-        })
+        });
     };
 
     return (
@@ -45,11 +54,11 @@ const Prod_modal = ({ show, handleClose, product }) => {
                             <form action="" id="prodForm" class="d-flex flex-column justify-content-between" onSubmit={handle_submission} >
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodName">Name</label>
-                                    <input class="text-center" type="text" name="prodName" id="prodName" placeholder="e.g The real homes" onChange={setProdName} />
+                                    <input class="text-center" type="text" name="prodName" id="prodName" placeholder="e.g The real homes" onChange={(e) => {setProdName(e.target.value)}} />
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodValue">Value</label>
-                                    <input class="text-center" type="text" name="prodValue" id="prodValue" placeholder="e.g 19.2M, 500K" onChange={setProdValue} />
+                                    <input class="text-center" type="text" name="prodValue" id="prodValue" placeholder="e.g 19.2M, 500K" onChange={(e) => {setProdValue(e.target.value)}} />
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodPhoto">Photo</label>

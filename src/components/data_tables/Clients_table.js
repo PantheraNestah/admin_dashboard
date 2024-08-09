@@ -23,31 +23,6 @@ export default function Clients_table(props) {
     const { active_proj_id, setActive_proj_id } = useActiveProjId();
     const [isDefaultId, setIsDefaultId] = useState(true);
     
-    /* useEffect(() => {
-        setAll_clients_list(clients_list);
-    }, [clients_list]);
-
-    useEffect(() => {
-        console.log(active_proj_id);
-        if (all_clients_list.length > 0) {
-            if (isDefaultId) {
-                setActive_proj_id(all_clients_list[0].id);
-                setIsDefaultId(false);
-            }
-            else {
-                setActive_proj_id(active_proj_id);
-            }
-        }
-    }, [all_clients_list]);
-    useEffect(() => {
-        if (all_clients_list.length > 0) {
-            const projectClients = all_clients_list.find(proj => proj.id === active_proj_id)?.clients;
-            setActive_proj_clients(projectClients);
-            console.log("Current active proj's clients", projectClients);
-        }
-    }, [active_proj_id, all_clients_list]); */
-    
-    // Initialize active_proj_id based on clients_list when it first loads
     useEffect(() => {
         if (clients_list.length > 0 && active_proj_id === 0) {
             setActive_proj_id(clients_list[0].id);
