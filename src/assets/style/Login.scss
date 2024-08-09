@@ -1,3 +1,5 @@
+@import "../style/vars.scss";
+
 .form-container1 {
     width: 600px;
     margin-top: 5rem;
@@ -51,6 +53,20 @@
     background-color: rgba(188, 32, 48, 0.85);
     color: rgb(223, 220, 219);
   }
+.operation-response {
+  width: 180px;
+  .success {
+      color: $cust-green4;
+  }
+  .failure {
+      color: $cust-color1;
+  }
+  span {
+      font-size: 12.5px;
+      white-space: nowrap;
+      margin-right: 10px;
+  }
+}
 
   @media (max-width: 767.9px) {
     .form-container1 {
