@@ -11,23 +11,23 @@ import SetPassword from "./pages/SetPassword";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Head_Meta /> 
-          <Routes>
-            <Route path="/" element={<Navigate to={"/login"} />} />
-            <Route element={<ProtectedRoute />} >
-              <Route  path="/home" element={<Home />} /> 
-              <Route  path="/staff" element={<Staff />} /> 
-            </Route>
-            <Route path="/mobile_acc" element={<Mobile_acc_page />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/set_password" element={<SetPassword />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+          <div className="App">
+            <Head_Meta /> 
+            <Routes>
+              <Route path="/" element={<Navigate to={"/login"} />} />
+              <Route element={<ProtectedRoute />} >
+                <Route  path="/home" element={<Home />} /> 
+                <Route  path="/staff" element={<Staff />} /> 
+              </Route>
+              <Route path="/mobile_acc" element={<Mobile_acc_page />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/set_password" element={<SetPassword />} />
+            </Routes>
+          </div>
+      </AuthProvider>
+    </Router>
   );
 }
 
