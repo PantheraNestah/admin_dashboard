@@ -16,3 +16,6 @@ Properties Cartegory:-
 	Residential
 	Land
 	Commercial
+
+Token refresh once stored have expired.
+Add property in authstate to be changing whenever registration/update is Successfully done - to help refetch respective data
