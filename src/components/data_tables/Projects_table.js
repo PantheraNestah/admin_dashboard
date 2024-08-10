@@ -12,32 +12,6 @@ const columns = [
     {field: 'clients', headerName: 'Clients No.',type: 'Number', width: 90},
 ]
 
-const processProjObj = (proj_obj) => {
-    return {
-        id: proj_obj.id,
-        project: proj_obj.prodName,
-        value: `KSH ${proj_obj.prodValue / 1000000} M`,
-        clients: proj_obj.clientDtos.length
-    }
-};
-const fetchProjects = async (auth_state) => {
-    console.log("AuthState: " + {...auth_state});
-    if (isTokenExpired(auth_state.expiry)) {
-        return;
-    }
-    else {
-        const response = await api('http://localhost:8080/api/projects/all', {
-            method: 'GET',
-            token: auth_state.token,
-        });
-        if (typeof response != 'undefined') {
-            console.log(response)
-            const proj_objs = response.data.projects.map((proj) => processProjObj(proj));
-            return (proj_objs)
-        }
-    }
-};
-
 export default function Projects_table(props) {
     const [records, setRecords] = useState([]);
     const { projs_list } = useProjslist();
