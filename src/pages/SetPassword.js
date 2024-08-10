@@ -23,7 +23,7 @@ const SetPassword = () => {
             }, 3800);
             return;
         }
-        fetch(`http://localhost:8080/set_password`, {
+        fetch(`https://meladenproperties.tech:8443/set_password`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
