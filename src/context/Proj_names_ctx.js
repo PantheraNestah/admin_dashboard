@@ -3,6 +3,7 @@ import AuthContext from './AuthContext';
 import api from '../utils/Api';
 import { isTokenExpired } from '../utils/checkTokenExpiry';
 
+const API_URL = process.env.REACT_APP_API_URL;
 const processProjObj = (proj_obj) => {
     return {
         id: proj_obj.id,
@@ -22,7 +23,7 @@ const fetchProjects = async (auth_state) => {
         return;
     }
     else {
-        const response = await api('http://localhost:8080/api/projects/all', {
+        const response = await api(`${API_URL}/projects/all`, {
             method: 'GET',
             token: auth_state.token,
         });
@@ -51,7 +52,7 @@ const fetchClients = async (auth_state) => {
         return;
     }
     if (!isTokenExpired(auth_state.expiry)) {
-        const response = await api('http://localhost:8080/api/projects/all', {
+        const response = await api(`${API_URL}/projects/all`, {
             method: 'GET',
             token: auth_state.token,
         });
