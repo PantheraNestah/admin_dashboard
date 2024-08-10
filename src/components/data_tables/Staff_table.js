@@ -23,23 +23,12 @@ const columns = [
     {field: 'email', headerName: 'Email', width: 150},
 ]
 
-const rows = [
-    {id: 1, image: profile_placeholder, name: 'John Doe', department: 'HR', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 2, image: profile_placeholder, name: 'John Doe', department: 'Accounts', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 3, image: profile_placeholder, name: 'John Doe', department: 'Project Manager', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 4, image: profile_placeholder, name: 'John Doe', department: 'Senior Developer', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 5, image: profile_placeholder, name: 'John Doe', department: 'Software Developer', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 6, image: profile_placeholder, name: 'John Doe', department: 'Product Designer', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 7, image: profile_placeholder, name: 'John Doe', department: 'Software Developer', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 8, image: profile_placeholder, name: 'John Doe', department: 'Sales', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 9, image: profile_placeholder, name: 'John Doe', department: 'Support', phone: '0712345678', email: 'johndoe@gmail.com'},
-    {id: 10, image: profile_placeholder, name: 'John Doe', department: 'IT', phone: '0712345678', email: 'johndoe@gmail.com'},
-]
-
 const processStaffObj = (staff_obj) => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     return {
         id: staff_obj.id,
-        image: (staff_obj.photo != null) ? `http://localhost:8080/files/staffs/photo?filename=${staff_obj.photo}` : profile_placeholder,
+        image: (staff_obj.photo != null) ? `https://meladenproperties.tech:8443/files/staffs/photo?filename=${staff_obj.photo}` : profile_placeholder,
         name: staff_obj.name,
         department: staff_obj.department,
         phone: staff_obj.phone,
@@ -51,7 +40,7 @@ const fetchStaff = async (auth_state) => {
         return;
     }
     if (!isTokenExpired(auth_state.expiry)) {
-        const response = await api('http://localhost:8080/api/staffs/all', {
+        const response = await api(`${API_URL}/staffs/all`, {
             method: 'GET',
             token: auth_state.token
         });
