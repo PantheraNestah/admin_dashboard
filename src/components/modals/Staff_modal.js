@@ -30,7 +30,7 @@ const Staff_modal = (props) => {
                 body: JSON.stringify(json_data)
             }
         ).then((response) => {
-            console.log(response.statusCode);
+            //console.log(response.statusCode);
             if (response.statusCode == 201 || response.statusCode == 200) {
                 setSubmitSuccess(true);
                 setTimeout(() => {
