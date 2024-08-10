@@ -12,7 +12,8 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('https://meladenproperties.tech:8085/auth/generateToken', {
+        
+        const response = await fetch('https://meladenproperties.tech:8443/auth/generateToken', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "username": email, "password": password }),
