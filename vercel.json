@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/auth/:path*",
+        "destination": "http://meladenproperties.tech:8085/auth/:path*"
+      }
+    ]
+  }
