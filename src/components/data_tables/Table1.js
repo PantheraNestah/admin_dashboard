@@ -12,12 +12,12 @@ const Table1 = (props) => {
     const option_change = (event) => {
         const index = event.target.selectedIndex
         const proj_id = event.target.options[index].getAttribute('data-id')
-        console.log(`clicked projname of index: ${proj_id}`)
+        //console.log(`clicked projname of index: ${proj_id}`)
         setActive_proj_id(proj_id)
     }
     useEffect(() => {
         setLocal_projs_list(projnames_list)
-        console.log(local_projs_list)
+        //console.log(local_projs_list)
     }, [projnames_list])
 
     return (

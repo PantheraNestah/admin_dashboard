@@ -66,7 +66,7 @@ export default function Staff_table(props) {
 
     useEffect(() => {
         const staffs = fetchStaff(authState.authState).then((staffs) => {
-            console.log(staffs);
+            //console.log(staffs);
             setRecords(staffs);
         });
     }, [authState]);

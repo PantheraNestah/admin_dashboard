@@ -34,7 +34,7 @@ export default function Clients_table(props) {
             //console.log("[ ALL CLIENTS LIST ] : ", clients_list);
             const projectClients = clients_list.find(proj => proj.id == active_proj_id)?.clients || [];
             setActive_proj_clients(projectClients);
-            console.log("Current active proj's clients", projectClients);
+            //console.log("Current active proj's clients", projectClients);
         }
     }, [active_proj_id, clients_list]);
     
