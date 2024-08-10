@@ -23,8 +23,8 @@ const columns = [
     {field: 'email', headerName: 'Email', width: 150},
 ]
 
+const API_URL = process.env.REACT_APP_API_URL;
 const processStaffObj = (staff_obj) => {
-    const API_URL = process.env.REACT_APP_API_URL;
 
     return {
         id: staff_obj.id,
