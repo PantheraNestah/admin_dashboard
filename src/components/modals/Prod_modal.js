@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import "./modal.scss";
-import circular_loading from "../../assets/circular_loading.gif";
+import circular_loading from "../../assets/img/circular_loading.gif";
 import api from "../../utils/Api";
 import AuthContext from '../../context/AuthContext';
 

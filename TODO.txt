@@ -19,3 +19,9 @@ Properties Cartegory:-
 
 Token refresh once stored have expired.
 Add property in authstate to be changing whenever registration/update is Successfully done - to help refetch respective data
+
+12/08/2024
+Add staff data to login response to use in staff profile details
+Udjust property search to write property name plus green tick
+Handle photo file saving, update and retrieval
+Add spinners to show loading responses after operations
