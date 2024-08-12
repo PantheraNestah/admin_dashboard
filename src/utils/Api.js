@@ -18,14 +18,17 @@ const api = async (url, options = {}) => {
         if (response.status === 401) {
           // Handle unauthorized response, e.g., redirect to login
           window.location.href = '/login';
+          return;
         }
         else if (response.status === 403) {
           // Handle forbidden response
           window.location.href = '/login';
+          return;
         }
         //handle internal server error
         if (response.status === 500) {
           console.log(await response.json());
+          return (await response.json());
         }
       }
       else {
