@@ -11,6 +11,7 @@ const Email_modal = () => {
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodSearch, setProdSearch] = useState("");
     const [prodFound, setProdFound] = useState(false);
+    const [prod_name, setProd_name] = useState("");
     const [message, setMessage] = useState("");
     const { projs_list } = useProjslist();
     const [projects_local, setProjects_local] = useState(projs_list)
@@ -35,15 +36,16 @@ const Email_modal = () => {
         projects_local.find((proj) => {
             if (proj.id == prodSearch) {
                 setProdFound(true);
-                /* if (all_clients_list.length > 0) {
-                    const clients = all_clients_list.filter((obj) => {
-                        return obj.prodId == proj.id
-                    });
-                    setClients_to_msg(clients);
-                } */
+                setProd_name(proj.project);
                 setTimeout(() => {
                     setProdFound(false);
                 }, 3800);
+            }
+            else {
+                setSubmitFailure(true);
+                setTimeout(() => {
+                    setSubmitFailure(false);
+                }, 2000)
             }
         });
     };
@@ -105,7 +107,7 @@ const Email_modal = () => {
                                     {prodFound &&
                                         <span class="confirm-product d-flex align-items-center justify-content-center">
                                             <i class="bi bi-check-circle-fill me-2"></i>
-                                            <span>Product found</span>
+                                            <span>{prod_name}</span>
                                         </span>
                                     }
                                 </span>

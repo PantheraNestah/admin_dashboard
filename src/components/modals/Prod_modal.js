@@ -1,10 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react';
 import "./modal.scss";
+import circular_loading from "../../assets/circular_loading.gif";
 import api from "../../utils/Api";
 import AuthContext from '../../context/AuthContext';
 
 const Prod_modal = () => {
     const auth_state = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodName, setProdName] = useState("");
@@ -15,6 +17,7 @@ const Prod_modal = () => {
         const today = new Date()
         var regDate = today.toISOString().slice(0, 10)
         e.preventDefault();
+        setLoading(true);
         const json_data = {
             "prodName": prodName,
             "prodValue": prodValue,
@@ -33,10 +36,17 @@ const Prod_modal = () => {
             }
         ).then((response) => {
             if (response.statusCode == 201) {
+                setLoading(false);
                 setSubmitSuccess(true);
                 setTimeout(() => {
                     setSubmitSuccess(false);
                 }, 2000);
+            }
+            else {
+                setSubmitFailure(true);
+                setTimeout(() => {
+                    setSubmitFailure(false);
+                }, 2000)
             }
         });
     };
@@ -65,10 +75,17 @@ const Prod_modal = () => {
                                     <input type="file" class="ms-2" id="prodPhoto" disabled />
                                 </span>
                                 <span class="operation-response mx-auto">
+                                {loading && 
+                                    <label className="success mx-auto d-flex align-items-center">
+                                        <span>
+                                            <img src={circular_loading} alt="" width={"40px"} />
+                                        </span>
+                                    </label>
+                                }
                                 {submitSuccess && 
-                                    <label class="success mx-auto d-flex align-items-center">
+                                    <label className="success mx-auto d-flex align-items-center">
                                         <span>Successfully added</span>
-                                        <i class="bi bi-check-circle-fill"></i>
+                                        <i className="bi bi-check-circle-fill"></i>
                                     </label>
                                 }
                                 {submitFailure &&

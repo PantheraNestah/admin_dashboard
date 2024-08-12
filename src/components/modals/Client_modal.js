@@ -13,6 +13,7 @@ const Client_modal = () => {
     const [phone, setPhone] = useState("");
     const [prodSearch, setProdSearch] = useState("");
     const [prodFound, setProdFound] = useState(false);
+    const [prod_name, setProd_name] = useState("");
     const { projs_list } = useProjslist();
     const [projects_local, setProjects_local] = useState(projs_list)
     const API_URL = process.env.REACT_APP_API_URL;
@@ -24,6 +25,7 @@ const Client_modal = () => {
         projects_local.find((proj) => {
             if (proj.id == prodSearch) {
                 setProdFound(true);
+                setProd_name(proj.project);
                 setTimeout(() => {
                     setProdFound(false);
                 }, 3800);
@@ -87,7 +89,7 @@ const Client_modal = () => {
                                     {prodFound &&
                                         <span class="confirm-product d-flex align-items-center justify-content-center">
                                             <i class="bi bi-check-circle-fill me-2"></i>
-                                            <span>Product found</span>
+                                            <span>{prod_name}</span>
                                         </span>
                                     }
                                 </span>
