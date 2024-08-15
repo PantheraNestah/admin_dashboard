@@ -1,31 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Settings_offcanvas.scss";
+import AuthContext from "../../context/AuthContext";
+import profile_placeholder from "../../assets/img/profile_placeholder.jpg";
+import api from "../../utils/Api";
+import { save_file } from "../../utils/Api";
 
 const Settings_offcanvas = () => {
     const [submitDisabled, setsubmitDisabled] = useState(true);
+    const [submit2Disabled, setsubmit2Disabled] = useState(true);
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [lnHandle, setLnHandle] = useState("");
     const [xHandle, setXHandle] = useState("");
+    const [photo_name, setPhoto_name] = useState("");
+    const [photo, setPhoto] = useState(null);
+    const authState = useContext(AuthContext);
+    const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+    const API_URL = process.env.REACT_APP_API_URL;
 
+    useEffect(() => {
+        if (authState.authState.isAuthenticated) {
+            setEmail(authState.authState.user.email);
+            setPhone(authState.authState.user.phone);
+            setLnHandle(authState.authState.user.lnHandle);
+            setXHandle(authState.authState.user.xhandle);
+            authState.authState.user.photo ? setPhoto_name(authState.authState.user.photo) : setPhoto_name("");
+        }
+    }, [authState.authState.isAuthenticated, authState.authState.user]);
     const toggle_edit = () => {
         (submitDisabled) ? setsubmitDisabled(false) : setsubmitDisabled(true);
+        //(submit2Disabled) ? setsubmit2Disabled(false) : setsubmit2Disabled(true);
     };
     const details_submission = (e) => {
         setsubmitDisabled(true);
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("email", email);
-        formData.append("phone", phone);
-        formData.append("lnHandle", lnHandle);
-        formData.append("xHandle", xHandle);
         const staffDetails = {
             email: email,
             phone: phone,
             lnHandle: lnHandle,
             xHandle: xHandle
         };
-        console.log(formData);
+        //console.log(staffDetails);
+        try {
+            api(`${API_URL}/staffs/edit`,
+                {
+                    method: "PUT",
+                    token: authState.authState.token,
+                    body: JSON.stringify(staffDetails)
+                }
+            ).then((response) => {
+                console.log(response);
+            });
+        } catch (error) {}
+    };
+    const update_photo = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        const file_field = document.getElementById("img-upload");
+        console.log(file_field.files[0]);
+        formData.append("file", file_field.files[0]);
+        formData.append("id", email);
+        save_file(`${API_URL}/staffs/photo`,
+            {
+                method: "POST",
+                ContentType: "multipart/form-data",
+                token: authState.authState.token,
+                body: formData
+            }
+        ).then((response) => {
+            console.log(response);
+        });
     };
 
     return (
@@ -38,7 +82,7 @@ const Settings_offcanvas = () => {
             <div className="offcanvas-body">
                 <article>
                     <div className="div-current-profile d-flex align-items-center justify-content-center">
-                        <img src="../imgs/general_profile_photo-editted.jpg" className="staff-prof-photo" alt="" />
+                        <img src={photo_name !="" ? `${BASE_URL}/files/staffs/photo?filename=${photo_name}` : profile_placeholder} className="staff-prof-photo" alt="" />
                     </div>
                 </article>
                 <article className="article-staff-details">
@@ -49,19 +93,19 @@ const Settings_offcanvas = () => {
                         <form id="edit-staffForm" className="d-flex flex-column justify-content-between col-11" onSubmit={details_submission}>
                             <span className="d-flex justify-content-between">
                                 <label for="">Email</label>
-                                <input id="staffEmail" className="txt-input" name="email" type="email" placeholder="name@example.com" onChange = {(e) => {setEmail(e.target.value)} } />
+                                <input id="staffEmail" className="txt-input" name="email" type="email" placeholder="name@example.com" onChange = {(e) => {setEmail(e.target.value)} } value={email} />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="">Phone</label>
-                                <input id="staffPhone" className="txt-input" name="phone" type="text" placeholder="+254798765432" onChange={(e) => {setPhone(e.target.value)}} />
+                                <input id="staffPhone" className="txt-input" name="phone" type="text" placeholder="+254798765432" onChange={(e) => {setPhone(e.target.value)}} value={phone} />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="lnHandle">LinkedIn</label>
-                                <input className="txt-input" type="text" name="lnHandle" id="lnHandle" placeholder="@LinkedIn" onChange={(e) => {setLnHandle(e.target.value)}} />
+                                <input className="txt-input" type="text" name="lnHandle" id="lnHandle" placeholder="@LinkedIn" onChange={(e) => {setLnHandle(e.target.value)}} value={lnHandle} />
                             </span>
                             <span className="d-flex justify-content-between">
                                 <label for="xHandle">X Handle</label>
-                                <input className="txt-input" type="text" name="xhandle" id="xHandle" placeholder="@xHandle" onChange={(e) => {setXHandle(e.target.value)}} />
+                                <input className="txt-input" type="text" name="xhandle" id="xHandle" placeholder="@xHandle" onChange={(e) => {setXHandle(e.target.value)}} value={xHandle} />
                             </span>
                             <div>
                                 <input type="submit" value="Save" className="submit-edit submit-btn btn btn-primary" style={{width: "60px"}} disabled={submitDisabled} />
@@ -69,13 +113,13 @@ const Settings_offcanvas = () => {
                         </form>
                     </div>
                     <div className="div-profile-upload d-flex flex-column justify-content-between col-11">
-                        <form id="prof-img-upload-form" className="col-12 d-flex flex-column justify-content-between">
+                        <form id="prof-img-upload-form" className="col-12 d-flex flex-column justify-content-between" onSubmit={update_photo}>
                             <label for="img-upload">Profile photo</label>
                             <div className="upload-wrapper col-11 d-flex align-items-center justify-content-center">
-                                <input id="img-upload" name="photo" type="file" />
+                                <input id="img-upload" name="file" type="file" onChange={(e) => {setPhoto(e.target.files[0])}} disabled={true} />
                             </div>
                             <div className="profile-submit">
-                                <input type="submit" value="Update" className="submit-btn btn btn-cprimary" style={{width: "75px"}} />
+                                <input type="submit" value="Update" className="submit-btn btn btn-primary" style={{width: "75px"}} disabled={submit2Disabled} />
                             </div>
                         </form>
                     </div>
