@@ -3,6 +3,7 @@ import "./modal.scss";
 import circular_loading from "../../assets/img/circular_loading.gif";
 import api from "../../utils/Api";
 import AuthContext from '../../context/AuthContext';
+import { save_file } from '../../utils/Api';
 
 const Prod_modal = () => {
     const auth_state = useContext(AuthContext);
@@ -11,11 +12,15 @@ const Prod_modal = () => {
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodName, setProdName] = useState("");
     const [prodValue, setProdValue] = useState("");
+    const [prodPhoto, setProdPhoto] = useState(null);
+    const [submit_error, setSubmitError] = useState(false);
     const API_URL = process.env.REACT_APP_API_URL;
     
     const handle_submission = (e) => {
         const today = new Date()
         var regDate = today.toISOString().slice(0, 10)
+        const formData = new FormData();
+        let saved_prod_id;
         e.preventDefault();
         setLoading(true);
         const json_data = {
@@ -27,28 +32,66 @@ const Prod_modal = () => {
         {
             var val = json_data.prodValue.slice(0, -1)
             json_data["prodValue"] = val * 1000000
-        }
-        api(`${API_URL}/projects/new`,
+        }else if(json_data.prodValue.endsWith("K"))
             {
-                method: "POST",
-                token: auth_state.authState.token,
-                body: JSON.stringify(json_data)
+                var val = json_data.prodValue.slice(0, -1)
+                json_data["prodValue"] = val * 1000
             }
-        ).then((response) => {
-            if (response.statusCode == 201) {
-                setLoading(false);
-                setSubmitSuccess(true);
-                setTimeout(() => {
-                    setSubmitSuccess(false);
-                }, 2000);
-            }
-            else {
-                setSubmitFailure(true);
-                setTimeout(() => {
-                    setSubmitFailure(false);
-                }, 2000)
-            }
-        });
+        try {
+            api(`${API_URL}/projects/new`,
+                {
+                    method: "POST",
+                    token: auth_state.authState.token,
+                    body: JSON.stringify(json_data)
+                }
+            ).then((response) => {
+                if (response.statusCode == 201) {
+                    saved_prod_id = response.data.id;
+                    setLoading(false);
+                    setSubmitSuccess(true);
+                    setTimeout(() => {
+                        setSubmitSuccess(false);
+                    }, 3800);
+                    //formData.append("file", prodPhoto);
+                    //formData.append("id", prodName);
+                    /* save_file(`${API_URL}/projects/new/photo`,
+                        {
+                            method: "POST",
+                            token: auth_state.authState.token,
+                            body: formData
+                        }
+                    ).then((response) => {
+                        if (response.statusCode == 201) {
+                            setLoading(false);
+                            setSubmitSuccess(true);
+                            setTimeout(() => {
+                                setSubmitSuccess(false);
+                            }, 2000);
+                        }
+                        else {
+                            setLoading(false);
+                            setSubmitFailure(true);
+                            setTimeout(() => {
+                                setSubmitFailure(false);
+                            }, 2000)
+                        }
+                    }); */
+                }
+                else {
+                    setLoading(false);
+                    setSubmitFailure(true);
+                    setTimeout(() => {
+                        setSubmitFailure(false);
+                    }, 3800)
+                }
+            });
+        } catch (error) {
+            setLoading(false);
+            setSubmitFailure(true);
+            setTimeout(() => {
+                setSubmitFailure(false);
+            }, 3800);
+        };
     };
 
     return (
@@ -72,7 +115,7 @@ const Prod_modal = () => {
                                 </span>
                                 <span class="input-field d-flex justify-content-between">
                                     <label for="prodPhoto">Photo</label>
-                                    <input type="file" class="ms-2" id="prodPhoto" disabled />
+                                    <input type="file" class="ms-2" id="prodPhoto" name="file" onChange={(e) => {setProdPhoto(e.target.files[0])}} disabled={true} />
                                 </span>
                                 <span class="operation-response mx-auto">
                                 {loading && 

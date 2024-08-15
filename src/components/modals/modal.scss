@@ -64,6 +64,15 @@
             font-size: 12.5px;
         }
     }
+    .prod-notfound {
+        position: absolute;
+        left: 100px;
+        bottom: -25px;
+        color: $cust-color1;
+        span {
+            font-size: 12.5px;
+        }
+    }
     .operation-response {
         width: 180px;
         .success {

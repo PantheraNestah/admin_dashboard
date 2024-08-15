@@ -23,27 +23,34 @@ const Staff_modal = (props) => {
             role: role,
             department: department,
         };
-        api(`${API_URL}/staffs/new`,
-            {
-                method: "POST",
-                token: auth_state.authState.token,
-                body: JSON.stringify(json_data)
-            }
-        ).then((response) => {
-            //console.log(response.statusCode);
-            if (response.statusCode == 201 || response.statusCode == 200) {
-                setSubmitSuccess(true);
-                setTimeout(() => {
-                    setSubmitSuccess(false);
-                }, 3800);
-            }
-            else {
-                setSubmitFailure(true);
-                setTimeout(() => {
-                    setSubmitFailure(false);
-                }, 3800);
-            };
-        });
+        try {
+            api(`${API_URL}/staffs/new`,
+                {
+                    method: "POST",
+                    token: auth_state.authState.token,
+                    body: JSON.stringify(json_data)
+                }
+            ).then((response) => {
+                //console.log(response.statusCode);
+                if (response.statusCode == 201 || response.statusCode == 200) {
+                    setSubmitSuccess(true);
+                    setTimeout(() => {
+                        setSubmitSuccess(false);
+                    }, 3800);
+                }
+                else {
+                    setSubmitFailure(true);
+                    setTimeout(() => {
+                        setSubmitFailure(false);
+                    }, 3800);
+                };
+            });
+        } catch (error) {
+            setSubmitFailure(true);
+            setTimeout(() => {
+                setSubmitFailure(false);
+            }, 3800);
+        }
     };
     return (
         <section id="staffModal" class="modal fade staffModal">

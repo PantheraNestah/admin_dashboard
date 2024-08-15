@@ -7,6 +7,7 @@ import { useProjslist } from '../../context/Proj_names_ctx';
 const Prod_edit_modal = (props) => {
     const [prodSearch, setProdSearch] = useState("");
     const [prodFound, setProdFound] = useState(false);
+    const [prodNotFound, setProdNotFound] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodName, setProdName] = useState("");
@@ -26,6 +27,12 @@ const Prod_edit_modal = (props) => {
                 setProdValue(proj.value);
                 setClients(proj.clients);
                 setProdFound(true);
+            }
+            if (!prodFound) {
+                setProdNotFound(true);
+                setTimeout(() => {
+                    setProdNotFound(false);
+                }, 3800);
             }
         });
     };

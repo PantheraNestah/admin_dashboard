@@ -11,6 +11,7 @@ const Sms_modal = () => {
     const [submitFailure, setSubmitFailure] = useState(false);
     const [prodSearch, setProdSearch] = useState("");
     const [prodFound, setProdFound] = useState(false);
+    const [prodNotFound, setProdNotFound] = useState(false);
     const [prod_name, setProd_name] = useState("");
     const [message, setMessage] = useState("");
     const { projs_list } = useProjslist();
@@ -37,10 +38,16 @@ const Sms_modal = () => {
             if (proj.id == prodSearch) {
                 setProdFound(true);
                 setProd_name(proj.project);
+            }
+            if (!prodFound) {
+                setProdNotFound(true);
                 setTimeout(() => {
-                    setProdFound(false);
+                    setProdNotFound(false);
                 }, 3800);
             }
+            setTimeout(() => {
+                setProdFound(false);
+            }, 3800);
         });
     };
     const handle_submission = (e) => {
@@ -54,28 +61,35 @@ const Sms_modal = () => {
             clients: clients_to_msg,
             date: regDate
         };
-        console.log(json_data);
-        api(`${API_URL}/clients/sms`,
-            {
-                method: "POST",
-                token: auth_state.authState.token,
-                body: JSON.stringify(json_data)
-            }
-        ).then((response) => {
-            console.log(response.statusCode);
-            if (response.statusCode == 201 || response.statusCode == 200) {
-                setSubmitSuccess(true);
-                setTimeout(() => {
-                    setSubmitSuccess(false);
-                }, 3800);
-            }
-            else {
-                setSubmitFailure(true);
-                setTimeout(() => {
-                    setSubmitFailure(false);
-                }, 3800);
-            }
-        });
+        //console.log(json_data);
+        try {
+            api(`${API_URL}/clients/sms`,
+                {
+                    method: "POST",
+                    token: auth_state.authState.token,
+                    body: JSON.stringify(json_data)
+                }
+            ).then((response) => {
+                console.log(response.statusCode);
+                if (response.statusCode == 201 || response.statusCode == 200) {
+                    setSubmitSuccess(true);
+                    setTimeout(() => {
+                        setSubmitSuccess(false);
+                    }, 3800);
+                }
+                else {
+                    setSubmitFailure(true);
+                    setTimeout(() => {
+                        setSubmitFailure(false);
+                    }, 3800);
+                }
+            });
+        } catch (error) {
+            setSubmitFailure(true);
+            setTimeout(() => {
+                setSubmitFailure(false);
+            }, 3800);
+        }
     };
     return (
         <section id="smsModal" class="modal fade messageModal">
@@ -101,6 +115,12 @@ const Sms_modal = () => {
                                         <span class="confirm-product d-flex align-items-center justify-content-center">
                                             <i class="bi bi-check-circle-fill me-2"></i>
                                             <span>{prod_name}</span>
+                                        </span>
+                                    }
+                                    {!prodFound && prodNotFound &&
+                                        <span class="prod-notfound d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-x-circle-fill me-2"></i>
+                                            <span>Product not found</span>
                                         </span>
                                     }
                                 </span>
