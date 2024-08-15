@@ -27,7 +27,7 @@
     border-radius: 50%;
   }
   .form-container1 .form-container1-div .form-container2 {
-    height: 230px;
+    height: 250px;
     margin: 1.2rem auto;
   }
   .form-container1 .form-container1-div .form-container2 h2, .form-container1 .form-container1-div .form-container2 .h2 {
@@ -37,7 +37,7 @@
   }
   .form-container1 .form-container1-div .form-container2 form {
     border: none;
-    height: 160px;
+    height: 180px;
     padding: 4px;
   }
   .form-container1 .form-container1-div .form-container2 form input {
@@ -52,6 +52,13 @@
   .form-container1 .form-container1-div .form-container2 .submit-btn {
     background-color: rgba(188, 32, 48, 0.85);
     color: rgb(223, 220, 219);
+  }
+  .submision_area {
+    .cred_btn {
+      background-color: $gray-600;
+      color: rgb(223, 220, 219);
+      font-size: 13px;
+    }
   }
 .operation-response {
   width: 180px;
@@ -90,14 +97,14 @@
       height: 60px;
     }
     .form-container1 .form-container1-div .form-container2 {
-      height: 200px;
+      height: 220px;
       margin: 1.2rem auto;
     }
     .form-container1 .form-container1-div .form-container2 h2, .form-container1 .form-container1-div .form-container2 .h2 {
       font-size: 16px;
     }
     .form-container1 .form-container1-div .form-container2 form {
-      height: 140px;
+      height: 160px;
     }
     .form-container1 .form-container1-div .form-container2 form input {
       font-size: 12px;
