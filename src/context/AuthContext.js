@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       token: auth_data.token,
       expiry: auth_data.expiry,
       isAuthenticated: true,
-      user: {},
+      user: auth_data.staff_data,
     };
     setAuthState(newAuthState);
     sessionStorage.setItem("auth_state", JSON.stringify(newAuthState));
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
           if (isTokenExpired(auth_state.expiry)) {
             logout();
           }
-        }, 60000);
+        }, 120000);
         return () => clearInterval(interval);
       } else {
         logout();
