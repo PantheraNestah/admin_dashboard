@@ -25,3 +25,8 @@ Add staff data to login response to use in staff profile details
 Udjust property search to write property name plus green tick
 Handle photo file saving, update and retrieval
 Add spinners to show loading responses after operations
+
+15/08/2024
+Add staff data to login response to use in staff profile details
+Handle photo file saving and update
+Add a button to login form to fetch login credentials
