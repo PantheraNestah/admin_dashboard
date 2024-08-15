@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { type } from '@testing-library/user-event/dist/type';
 import profile_placeholder from '../../assets/img/profile_placeholder.jpg';
-import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
 import api from '../../utils/Api';
 import { isTokenExpired } from '../../utils/checkTokenExpiry';
@@ -25,10 +23,10 @@ const columns = [
 
 const API_URL = process.env.REACT_APP_API_URL;
 const processStaffObj = (staff_obj) => {
-
+    const BASE_URL = process.env.REACT_APP_BACKEND_URL;
     return {
         id: staff_obj.id,
-        image: (staff_obj.photo != null) ? `https://meladenproperties.tech:8443/files/staffs/photo?filename=${staff_obj.photo}` : profile_placeholder,
+        image: (staff_obj.photo != null) ? `${BASE_URL}/files/staffs/photo?filename=${staff_obj.photo}` : profile_placeholder,
         name: staff_obj.name,
         department: staff_obj.department,
         phone: staff_obj.phone,

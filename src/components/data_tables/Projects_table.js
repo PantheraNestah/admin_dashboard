@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import api from '../../utils/Api';
-import { isTokenExpired } from '../../utils/checkTokenExpiry';
 import { useProjslist } from '../../context/Proj_names_ctx';
 
 const columns = [
@@ -12,8 +10,7 @@ const columns = [
     {field: 'clients', headerName: 'Clients No.',type: 'Number', width: 90},
 ]
 
-export default function Projects_table(props) {
-    const [records, setRecords] = useState([]);
+export default function Projects_table() {
     const { projs_list } = useProjslist();
     const [projects_local, setProjects_local] = useState(projs_list)
 
