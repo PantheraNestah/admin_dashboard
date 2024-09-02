@@ -81,8 +81,8 @@ const Mobile_acc = () => {
                     <span id="toggle-edit" style={{position: "absolute", top: "0.5rem", right: "1.1rem", cursor: "pointer"}} onClick={toggle_edit}>
                         <i className="bi bi-pencil-square" style={{fontSize: "24px",fontWeight: "800"}}></i>
                     </span>
-                    <div className="staff-details border">
-                        <form id="edit-staffForm" className="d-flex flex-column justify-content-between col-12 border" onSubmit={details_submission}>
+                    <div className="staff-details">
+                        <form id="edit-staffForm" className="d-flex flex-column justify-content-between col-12" onSubmit={details_submission}>
                             <span className="d-flex justify-content-between">
                                 <label for="" className="">Email</label>
                                 <input id="staffEmail" className="txt-input" name="email" type="email" placeholder="name@example.com" onChange = {(e) => {setEmail(e.target.value)} } value={email} />
