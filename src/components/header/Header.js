@@ -81,32 +81,36 @@ const Header = () => {
     );
 };
 const Sm_nav = () => {
+    const [expanded, setExpanded] = useState(false);
+    const on_lick_click = () => {
+        setExpanded(false);
+    };
 
     return (
         <div className="navbar top_nav_sm col-12 d-flex align-items-center d-lg-none">
             <h2 className="col-9 col-md-10 text-center">Meladen Properties ltd</h2>
             <div className="menu_btn col-3 col-md-2 d-flex align-items-center justify-content-end">
-                <a href="#menu_drop" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu_drop" aria-controls="menu_drop" aria-expanded="false" aria-label="Toggle navigation">
+                <a href="#menu_drop" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu_drop" aria-controls="menu_drop" aria-expanded="false" aria-label="Toggle navigation" onClick={() => {setExpanded(true)}}>
                     <span class="ggl_icon material-symbols-outlined">menu</span>
                 </a>
             </div>
-            <div id="menu_drop" class="collapse navbar-collapse">
+            <div id="menu_drop" class={`collapse navbar-collapse ${expanded ? "show" : ""}`}>
                 <div className="links_side col-12">
                     <ul className="d-flex flex-column col-12">
                         <li>
-                            <NavLink to={"/home"}>Home</NavLink>
+                            <NavLink to={"/home"} onClick={on_lick_click}>Home</NavLink>
                         </li>
                         <li>
-                            <a href="/home#Projects_section">Projects</a>
+                            <a href="/home#Projects_section" onClick={on_lick_click}>Projects</a>
                         </li>
                         <li>
-                            <a href="/home#Clients_section">Clients</a>
+                            <a href="/home#Clients_section" onClick={on_lick_click}>Clients</a>
                         </li>
                         <li>
-                            <NavLink to="/staff">Staff</NavLink>
+                            <NavLink to="/staff" onClick={on_lick_click}>Staff</NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/mobile_acc"}>Profile</NavLink>
+                            <NavLink to={"/mobile_acc"} onClick={on_lick_click}>Profile</NavLink>
                         </li>
                     </ul>
                 </div>
