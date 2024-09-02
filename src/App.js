@@ -20,8 +20,8 @@ function App() {
               <Route element={<ProtectedRoute />} >
                 <Route  path="/home" element={<Home />} /> 
                 <Route  path="/staff" element={<Staff />} /> 
+                <Route path="/mobile_acc" element={<Mobile_acc_page />} />
               </Route>
-              <Route path="/mobile_acc" element={<Mobile_acc_page />} />
               <Route path="/login" element={<Login />} />
               <Route path="/set_password" element={<SetPassword />} />
             </Routes>

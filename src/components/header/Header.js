@@ -94,13 +94,13 @@ const Sm_nav = () => {
                 <div className="links_side col-12">
                     <ul className="d-flex flex-column col-12">
                         <li>
-                            <NavLink to={"/"}>Home</NavLink>
+                            <NavLink to={"/home"}>Home</NavLink>
                         </li>
                         <li>
-                            <a href="/#Projects_section">Projects</a>
+                            <a href="/home#Projects_section">Projects</a>
                         </li>
                         <li>
-                            <a href="#Clients_section">Clients</a>
+                            <a href="/home#Clients_section">Clients</a>
                         </li>
                         <li>
                             <NavLink to="/staff">Staff</NavLink>
